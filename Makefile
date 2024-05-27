@@ -1,72 +1,83 @@
-# MINIRT_PROJECT_MAKEFILE
-include libft/.make
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ivalimak <ivalimak@student.hive.fi>        +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/05/27 17:31:32 by ivalimak          #+#    #+#              #
+#    Updated: 2024/05/27 18:10:21 by ivalimak         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-NAME				:=	miniRT
-CC					:=	cc
-FLAGS				:=	-g -Wall -Wextra -Werror
+NAME	:=	miniRT
 
-# MINIRT
-MINIRT_NAME			:=	main.c
-MINIRT_PATH			:=	miniRT/
-MINIRT				:=	$(addprefix $(MINIRT_PATH), $(MINIRT_NAME))
+BUILD	:=	normal
 
-# SOURCE_FILES
-SRCS				:=	$(MINIRT) 
-SRCS_PATH			:=	srcs/
+SRCDIR	:=	srcs
+OBJDIR	:=	objs
+INCDIR	:=	inc
+LFTDIR	:=	libft
+MLXDIR	:=	MLX42
 
-# OBJECT_FILES
-OBJS_PATH			:=	objs/
-OBJS				:=	$(addprefix $(OBJS_PATH), $(SRCS:.c=.o))
+INCLUDE	:=	-I$(INCDIR) -I$(LFTDIR)/$(INCDIR) -I$(MLXDIR)/include
 
-# LIBFT_LIBRARY
-LIBFT_PATH			:=	$(LIBFT_PATH)
-LIBFT_SOURSES		:=	$(addprefix $(LIBFT_PATH), $(LIBFT_SOURSES))
-LIBFT				:=	$(addprefix $(LIBFT_PATH), $(LIBFT))
+CC				:=	cc
+cflags.common	:=	-Wall -Wextra -Werror
+cflags.debug	:=	-g
+cflags.asan		:=	$(cflags.debug) -fsanitize=address
+cflags.normal	:=	-Ofast
+cflags.extra	:=	
+CFLAGS			:=	$(cflags.common) $(cflags.$(BUILD)) $(cflags.extra) $(INCLUDE)
 
-# MLX42_LIBRARY
-MLX_PATH			:=	MLX42/
-LIBMLX				:=	$(MLX_PATH)build/libmlx42.a
+ifeq ($(shell uname),Linux)
+	LDFLAGS	:=	-L$(LFTDIR) -L$(MLXDIR)/build -lft -lmlx42 -ldl -lglfw -pthread -lm
+else
+	LDFLAGS	:=	-L$(LFTDIR) -L$(MLXDIR)/build -L"/Users/$(USER)/.brew/opt/glfw/lib" -lft -lmlx42 -lglfw -framework Cocoa -framework OpenGL -framework IOKit
+endif
 
-# HEADERS AND EXTERNAL LIBRARIES
-HEADERS				:=	$(LIBFT_PATH)libft.h
-INCLUDES			:=	$(addprefix -I , $(HEADERS)) -I $(MLX_PATH)include
-LIBS				:=	-L$(LIBFT_PATH) -lft -L$(MLX_PATH)build -lmlx42 -L"/Users/$(USER)/.brew/opt/glfw/lib" -lglfw -framework Cocoa -framework OpenGL -framework IOKit
+MINIRTDIR	:=	miniRT
 
-# LOADING PROGRESS BAR INIT
-TOTAL_OBJS			:= $(words $(OBJS))
-COMPILED_OBJS		:= 0
-MSG_PRINTED 		:= false
+MINIRTFILES	:=	main.c
 
-# RULES
+FILES	:=	$(addprefix $(MINIRTDIR)/, $(MINIRTFILES))
+
+SRCS	:=	$(addprefix $(SRCDIR)/, $(FILES))
+OBJS	:=	$(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
+
+LFT		:=	$(LFTDIR)/libft.a
+MLX42	:=	$(MLXDIR)/build/libmlx42.a
+
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(LIBMLX) $(OBJS_PATH) $(OBJS) $(HEADERS)
-	@cc $(FLAGS) $(INCLUDES) $(LIBS) $(OBJS) -o $(NAME)
-	@echo "$(GREEN)\n\n$(NAME) created successfully!$(EC)"
+$(NAME): $(MLX42) $(LFT) $(OBJDIR) $(OBJS)
+	@printf "\e[32;1mMINIRT >\e[m Compiling %s\n" $@
+	@cc $(CFLAGS) $(OBJS) $(LDFLAGS) -o $@
+	@printf "\e[32;1mMINIRT >\e[m \e[1mDone!\e[m\n"
 
-$(LIBMLX):
-	@cmake $(MLX_PATH) -B $(MLX_PATH)build && make -C $(MLX_PATH)build -j4
+$(MLX42):
+	@cmake $(MLXDIR) -B $(MLXDIR)/build && make -j4 --no-print-directory -C $(MLXDIR)/build
 
-$(OBJS_PATH):
-	@mkdir -p $(OBJS_PATH)
-	@mkdir -p $(OBJS_PATH)$(MINIRT_PATH)
+$(LFT):
+	@make --no-print-directory -C $(LFTDIR) BUILD=$(BUILD) cflags.extra=$(cflags.extra)
 
-$(OBJS_PATH)%.o: $(SRCS_PATH)%.c $(HEADERS)
-	@$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
-	@$(call progress,"miniRT")
+$(OBJDIR):
+	@printf "\e[32;1mMINIRT >\e[m Creating objdir\n"
+	@mkdir -p $(OBJDIR)/$(MINIRTDIR)
 
-$(LIBFT): $(LIBFT_SOURSES)
-	@$(MAKE) -C $(LIBFT_PATH)
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	@printf "\e[32;1mMINIRT >\e[m Compiling %s\n" $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@$(MAKE) fclean -C $(LIBFT_PATH)
-	@rm -rf $(MLX_PATH)/build
-	@rm -rf $(OBJS_PATH)
-	@echo "$(RED)*.o files removed!$(EC)"
+	@make --no-print-directory -C $(LFTDIR) clean
+	@rm -rf $(MLXDIR)/build
+	@rm -f $(OBJS)
 
 fclean: clean
-	@rm -rf $(NAME)
-	@echo "$(RED)\nFull clean up completed successfully!$(EC)"
+	@make --no-print-directory -C $(LFTDIR) fclean
+	@rm -rf $(OBJDIR)
+	@rm -f $(NAME)
 
 re: fclean all
 

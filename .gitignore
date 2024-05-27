@@ -5,5 +5,5 @@
 .vscode
 objs/
 README.md
-./miniRT
+miniRT
 .clangd

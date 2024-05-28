@@ -6,7 +6,7 @@
 /*   By: ivalimak <ivalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:37:20 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/05/28 00:03:56 by ivalimak         ###   ########.fr       */
+/*   Updated: 2024/05/28 05:11:45 by ivalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ t_color	*getcolor(const char **line, const uint8_t range[2])
 	if (!**line)
 		ft_exit(rt_ferror("Unexpected EOL"));
 	vals = ft_pusharr(ft_split(
-			ft_substr(*line, 0, ft_strclen(*line, ' ')), ','));
+				ft_substr(*line, 0, ft_strclen(*line, ' ')), ','));
 	if (!vals)
 		ft_exit(rt_perror());
 	if (ft_getblksize(vals) / 4 != sizeof(*vals) || !ft_isuint(vals[0], 1)
@@ -92,7 +92,7 @@ t_vec3	*getvec3(const char **line, const long double range[2])
 	if (!**line)
 		ft_exit(rt_ferror("Unexpected EOL"));
 	vals = ft_pusharr(ft_split(
-			ft_substr(*line, 0, ft_strclen(*line, ' ')), ','));
+				ft_substr(*line, 0, ft_strclen(*line, ' ')), ','));
 	if (!vals)
 		ft_exit(rt_perror());
 	if (ft_getblksize(vals) / 4 != sizeof(*vals) || !ft_isfloat(vals[0])

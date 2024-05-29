@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_error.h                                         :+:      :+:    :+:   */
+/*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 18:56:30 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/05/29 13:16:57 by dshatilo         ###   ########.fr       */
+/*   Created: 2024/05/29 11:51:00 by dshatilo          #+#    #+#             */
+/*   Updated: 2024/05/29 13:15:46 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RT_ERROR_H
-# define RT_ERROR_H
-# include "minirt.h"
-# include <errno.h>
-# include <string.h>
+#ifndef MINIRT_H
+# define MINIRT_H
 
-// error.c
-int32_t	rt_perror(void);
-int32_t	rt_ferror(const char *err);
+
+# include "libft.h"
+# include "types.h"
+# include "rt_error.h"
+# include "file.h"
+# include "lin_alg.h"
+
 
 #endif

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ivalimak <ivalimak@student.hive.fi>        +#+  +:+       +#+         #
+#    By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/27 17:31:32 by ivalimak          #+#    #+#              #
-#    Updated: 2024/05/27 23:23:58 by ivalimak         ###   ########.fr        #
+#    Updated: 2024/05/29 12:37:38 by dshatilo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,18 +36,23 @@ else
 	LDFLAGS	:=	-L$(LFTDIR) -L$(MLXDIR)/build -L"/Users/$(USER)/.brew/opt/glfw/lib" -lft -lmlx42 -lglfw -framework Cocoa -framework OpenGL -framework IOKit
 endif
 
-MINIRTDIR	:=	miniRT
 
-MINIRTFILES	:=	main.c \
-				element.c \
-				error.c \
-				file.c \
-				object.c \
-				parse_utils.c
+PARSER_NAME		:=	element.c \
+					error.c \
+					file.c \
+					object.c \
+					parse_utils.c
+PARSER_PATH		:=	parser
+PARSER			:=	$(addprefix $(PARSER_PATH)/, $(PARSER_NAME))
 
-FILES	:=	$(addprefix $(MINIRTDIR)/, $(MINIRTFILES))
+LIN_ALG_NAME	:=	vec3_operations.c \
+					vec3_operations2.c \
+					vec3_multiplication.c \
+					vec3_rotation.c
+LIN_ALG_PATH	:=	lin_alg
+LIN_ALG			:=	$(addprefix $(LIN_ALG_PATH)/, $(LIN_ALG_NAME))
 
-SRCS	:=	$(addprefix $(SRCDIR)/, $(FILES))
+SRCS	:=	$(addprefix $(SRCDIR)/, main.c) $(addprefix $(SRCDIR)/, $(PARSER)) $(addprefix $(SRCDIR)/, $(LIN_ALG))
 OBJS	:=	$(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
 
 LFT		:=	$(LFTDIR)/libft.a
@@ -68,7 +73,8 @@ $(LFT):
 
 $(OBJDIR):
 	@printf "\e[32;1mMINIRT >\e[m Creating objdir\n"
-	@mkdir -p $(OBJDIR)/$(MINIRTDIR)
+	@mkdir -p $(OBJDIR)/$(PARSER_PATH)
+	@mkdir -p $(OBJDIR)/$(LIN_ALG_PATH)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@printf "\e[32;1mMINIRT >\e[m Compiling %s\n" $@

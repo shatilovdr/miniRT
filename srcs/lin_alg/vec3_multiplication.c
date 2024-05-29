@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_error.h                                         :+:      :+:    :+:   */
+/*   vec3_multiplication.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 18:56:30 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/05/29 13:16:57 by dshatilo         ###   ########.fr       */
+/*   Created: 2024/05/27 10:17:57 by dshatilo          #+#    #+#             */
+/*   Updated: 2024/05/29 12:38:46 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RT_ERROR_H
-# define RT_ERROR_H
-# include "minirt.h"
-# include <errno.h>
-# include <string.h>
+#include "lin_alg.h"
 
-// error.c
-int32_t	rt_perror(void);
-int32_t	rt_ferror(const char *err);
+double	dot(t_vec3 a, t_vec3 b)
+{
+	return (a.x * b.x + a.y * b.y + a.z * b.z);
+}
 
-#endif
+double	dot2(t_vec3 a)
+{
+	return (dot(a, a));
+}
+
+t_vec3	cross(t_vec3 a, t_vec3 b)
+{
+	t_vec3	cp;
+
+	cp.x = a.y * b.z - a.z * b.y;
+	cp.y = a.z * b.x - a.x * b.z;
+	cp.z = a.x * b.y - a.y * b.x;
+	return (cp);
+}

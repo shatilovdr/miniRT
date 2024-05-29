@@ -6,11 +6,11 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 11:56:40 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/05/28 00:39:08 by ivalimak         ###   ########.fr       */
+/*   Updated: 2024/05/29 12:16:52 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "file.h"
+#include "minirt.h"
 #include "ft_stdio/ft_printf.h"
 
 static inline t_scene	*_getscene(const char *path);

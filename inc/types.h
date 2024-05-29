@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivalimak <ivalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 18:25:43 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/05/27 23:44:42 by ivalimak         ###   ########.fr       */
+/*   Updated: 2024/05/29 12:04:32 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ struct s_scene
 
 struct s_vec3
 {
-	const long double	x;
-	const long double	y;
-	const long double	z;
+	long double	x;
+	long double	y;
+	long double	z;
 };
 
 struct s_color

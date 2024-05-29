@@ -3,21 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   file.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivalimak <ivalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 18:25:02 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/05/29 10:42:05 by ivalimak         ###   ########.fr       */
+/*   Updated: 2024/05/29 13:17:03 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILE_H
 # define FILE_H
-# include "libft.h"
-# include "types.h"
-# include "rt_error.h"
+# include "minirt.h"
 # include <fcntl.h>
-# include <float.h>
-# include <unistd.h>
 
 # define OBJ_SPH 0
 # define OBJ_PLN 1

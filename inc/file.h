@@ -6,7 +6,7 @@
 /*   By: ivalimak <ivalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 18:25:02 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/05/28 00:17:22 by ivalimak         ###   ########.fr       */
+/*   Updated: 2024/05/29 10:42:05 by ivalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@
 t_scene		*parsefile(const char *path);
 
 // element.c
-t_amb_light	*parse_alight(const char *line);
-t_camera	*parse_camera(const char *line);
-t_light		*parse_light(const char *line);
+t_amb_light	*parse_alight(const char *line, const t_scene *scene);
+t_camera	*parse_camera(const char *line, const t_scene *scene);
+t_light		*parse_light(const char *line, const t_scene *scene);
 
 // object.c
-t_cylinder	*parse_cyl(const char *line);
-t_sphere	*parse_sph(const char *line);
-t_plane		*parse_pln(const char *line);
+t_cylinder	*parse_cyl(const char *line, const t_scene *scene);
+t_sphere	*parse_sph(const char *line, const t_scene *scene);
+t_plane		*parse_pln(const char *line, const t_scene *scene);
 
 // parse_utils.c
 long double	getld(const char **line, const long double range[2]);

@@ -6,13 +6,13 @@
 /*   By: ivalimak <ivalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:22:30 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/05/28 00:17:56 by ivalimak         ###   ########.fr       */
+/*   Updated: 2024/05/29 10:44:58 by ivalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "file.h"
 
-t_cylinder	*parse_cyl(const char *line)
+t_cylinder	*parse_cyl(const char *line, const t_scene *scene)
 {
 	t_cylinder	*out;
 	t_vec3		vecs[2];
@@ -21,7 +21,10 @@ t_cylinder	*parse_cyl(const char *line)
 
 	out = ft_push(ft_alloc(sizeof(*out)));
 	if (!out)
+	{
+		close(scene->fd);
 		ft_exit(rt_perror());
+	}
 	line += 2;
 	ft_memcpy(&vecs[0], getvec3(&line, (long double [2]){POS_MIN, POS_MAX}),
 		sizeof(vecs[0]));
@@ -35,7 +38,7 @@ t_cylinder	*parse_cyl(const char *line)
 	return (out);
 }
 
-t_sphere	*parse_sph(const char *line)
+t_sphere	*parse_sph(const char *line, const t_scene *scene)
 {
 	t_sphere	*out;
 	t_vec3		pos;
@@ -44,7 +47,10 @@ t_sphere	*parse_sph(const char *line)
 
 	out = ft_push(ft_alloc(sizeof(*out)));
 	if (!out)
+	{
+		close(scene->fd);
 		ft_exit(rt_perror());
+	}
 	line += 2;
 	ft_memcpy(&pos, getvec3(&line, (long double [2]){POS_MIN, POS_MAX}),
 		sizeof(pos));
@@ -55,7 +61,7 @@ t_sphere	*parse_sph(const char *line)
 	return (out);
 }
 
-t_plane	*parse_pln(const char *line)
+t_plane	*parse_pln(const char *line, const t_scene *scene)
 {
 	t_plane	*out;
 	t_vec3	vecs[2];
@@ -63,7 +69,10 @@ t_plane	*parse_pln(const char *line)
 
 	out = ft_push(ft_alloc(sizeof(*out)));
 	if (!out)
+	{
+		close(scene->fd);
 		ft_exit(rt_perror());
+	}
 	line += 2;
 	ft_memcpy(&vecs[0], getvec3(&line, (long double [2]){POS_MIN, POS_MAX}),
 		sizeof(vecs[0]));

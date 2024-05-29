@@ -6,7 +6,7 @@
 /*   By: ivalimak <ivalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 18:51:32 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/05/28 00:46:18 by ivalimak         ###   ########.fr       */
+/*   Updated: 2024/05/29 10:43:39 by ivalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_scene	*parsefile(const char *path)
 		if (!_checktype(out, line))
 		{
 			close(out->fd);
-			ft_exit(1);
+			ft_exit(rt_ferror("Unrecognized element"));
 		}
 		ft_popblk(line);
 		line = ft_push(ft_strtrim(get_next_line(out->fd), "\t\n\v\f\r "));
@@ -46,17 +46,17 @@ static inline uint8_t	_checktype(t_scene *scene, const char *line)
 {
 	if (*line == 'A' && !scene->amb)
 	{
-		scene->amb = parse_alight(line);
+		scene->amb = parse_alight(line, scene);
 		return (scene->amb != NULL);
 	}
 	if (*line == 'C' && !scene->cam)
 	{
-		scene->cam = parse_camera(line);
+		scene->cam = parse_camera(line, scene);
 		return (scene->cam != NULL);
 	}
 	if (*line == 'L' && !scene->light)
 	{
-		scene->light = parse_light(line);
+		scene->light = parse_light(line, scene);
 		return (scene->light != NULL);
 	}
 	if (ft_strncmp(line, "sp", 2) == 0)
@@ -67,7 +67,7 @@ static inline uint8_t	_checktype(t_scene *scene, const char *line)
 		return (_getobj(scene, line, OBJ_CYL));
 	if (*line == 'A' || *line == 'C' || *line == 'L')
 		ft_exit(rt_ferror("Duplicate element found"));
-	return (*line == '\0');
+	return (*line == '\0' || *line == '#');
 }
 
 static inline uint8_t	_getobj(t_scene *scene, const char *line, uint8_t type)
@@ -75,19 +75,20 @@ static inline uint8_t	_getobj(t_scene *scene, const char *line, uint8_t type)
 	const t_list	**list;
 	const void		*obj;
 
+	obj = NULL;
 	if (type == OBJ_SPH)
 	{
-		obj = parse_sph(line);
+		obj = parse_sph(line, scene);
 		list = &scene->spheres;
 	}
 	else if (type == OBJ_PLN)
 	{
-		obj = parse_pln(line);
+		obj = parse_pln(line, scene);
 		list = &scene->planes;
 	}
 	else if (type == OBJ_CYL)
 	{
-		obj = parse_cyl(line);
+		obj = parse_cyl(line, scene);
 		list = &scene->cylinders;
 	}
 	if (!obj)

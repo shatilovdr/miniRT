@@ -6,13 +6,13 @@
 /*   By: ivalimak <ivalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:43:04 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/05/28 00:16:39 by ivalimak         ###   ########.fr       */
+/*   Updated: 2024/05/29 10:45:07 by ivalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "file.h"
 
-t_amb_light	*parse_alight(const char *line)
+t_amb_light	*parse_alight(const char *line, const t_scene *scene)
 {
 	t_amb_light	*out;
 	long double	ratio;
@@ -20,7 +20,10 @@ t_amb_light	*parse_alight(const char *line)
 
 	out = ft_push(ft_alloc(sizeof(*out)));
 	if (!out)
+	{
+		close(scene->fd);
 		ft_exit(rt_perror());
+	}
 	line++;
 	ratio = getld(&line, (long double [2]){0.0, 1.0});
 	ft_memcpy(&color, getcolor(&line, (uint8_t [2]){0, 255}), sizeof(color));
@@ -29,7 +32,7 @@ t_amb_light	*parse_alight(const char *line)
 	return (out);
 }
 
-t_camera	*parse_camera(const char *line)
+t_camera	*parse_camera(const char *line, const t_scene *scene)
 {
 	t_camera	*out;
 	t_vec3		vecs[2];
@@ -37,7 +40,10 @@ t_camera	*parse_camera(const char *line)
 
 	out = ft_push(ft_alloc(sizeof(*out)));
 	if (!out)
+	{
+		close(scene->fd);
 		ft_exit(rt_perror());
+	}
 	line++;
 	ft_memcpy(&vecs[0], getvec3(&line, (long double [2]){POS_MIN, POS_MAX}),
 		sizeof(vecs[0]));
@@ -49,7 +55,7 @@ t_camera	*parse_camera(const char *line)
 	return (out);
 }
 
-t_light	*parse_light(const char *line)
+t_light	*parse_light(const char *line, const t_scene *scene)
 {
 	t_light		*out;
 	t_vec3		pos;
@@ -58,7 +64,10 @@ t_light	*parse_light(const char *line)
 
 	out = ft_push(ft_alloc(sizeof(*out)));
 	if (!out)
+	{
+		close(scene->fd);
 		ft_exit(rt_perror());
+	}
 	line++;
 	ft_memcpy(&pos, getvec3(&line, (long double [2]){POS_MIN, POS_MAX}),
 		sizeof(pos));

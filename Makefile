@@ -6,7 +6,7 @@
 #    By: ivalimak <ivalimak@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/27 17:31:32 by ivalimak          #+#    #+#              #
-#    Updated: 2024/05/27 18:10:21 by ivalimak         ###   ########.fr        #
+#    Updated: 2024/05/27 23:23:58 by ivalimak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,12 @@ endif
 
 MINIRTDIR	:=	miniRT
 
-MINIRTFILES	:=	main.c
+MINIRTFILES	:=	main.c \
+				element.c \
+				error.c \
+				file.c \
+				object.c \
+				parse_utils.c
 
 FILES	:=	$(addprefix $(MINIRTDIR)/, $(MINIRTFILES))
 

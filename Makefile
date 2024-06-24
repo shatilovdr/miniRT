@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/05/27 17:31:32 by ivalimak          #+#    #+#              #
-#    Updated: 2024/06/24 21:27:18 by dshatilo         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME	:=	miniRT
 
 BUILD	:=	normal
@@ -34,7 +22,7 @@ ifeq ($(shell uname),Linux)
 	LDFLAGS	:=	-L$(LFTDIR) -L$(MLXDIR)/build -lft -lmlx42 -ldl -lglfw -pthread -lm
 else
 	LDFLAGS	:=	-L$(LFTDIR) -L$(MLXDIR)/build -L"/opt/homebrew/Cellar/glfw/3.3.9/lib/" -lft -lmlx42 -lglfw -framework Cocoa -framework OpenGL -framework IOKit
-endif
+	endif
 
 PARSER_NAME		:=	element.c \
 					error.c \
@@ -51,11 +39,20 @@ LIN_ALG_NAME	:=	vec3_operations.c \
 LIN_ALG_PATH	:=	lin_alg
 LIN_ALG			:=	$(addprefix $(LIN_ALG_PATH)/, $(LIN_ALG_NAME))
 
-SRCS	:=	$(addprefix $(SRCDIR)/, main.c) $(addprefix $(SRCDIR)/, $(PARSER)) $(addprefix $(SRCDIR)/, $(LIN_ALG))
-OBJS	:=	$(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
+DRAWER_NAME	:=	draw_scene.c \
+				calculate_img.c
+DRAWER_PATH	:=	drawer
+DRAWER			:=	$(addprefix $(DRAWER_PATH)/, $(DRAWER_NAME))
 
-LFT		:=	$(LFTDIR)/libft.a
-MLX42	:=	$(MLXDIR)/build/libmlx42.a
+SRCS			:=	$(addprefix $(SRCDIR)/, main.c) \
+					$(addprefix $(SRCDIR)/, $(PARSER)) \
+					$(addprefix $(SRCDIR)/, $(LIN_ALG)) \
+					$(addprefix $(SRCDIR)/, $(DRAWER))
+
+OBJS			:=	$(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
+
+LFT				:=	$(LFTDIR)/libft.a
+MLX42			:=	$(MLXDIR)/build/libmlx42.a
 
 all: $(NAME)
 
@@ -74,6 +71,7 @@ $(OBJDIR):
 	@printf "\e[32;1mMINIRT >\e[m Creating objdir\n"
 	@mkdir -p $(OBJDIR)/$(PARSER_PATH)
 	@mkdir -p $(OBJDIR)/$(LIN_ALG_PATH)
+	@mkdir -p $(OBJDIR)/$(DRAWER_PATH)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@printf "\e[32;1mMINIRT >\e[m Compiling %s\n" $@

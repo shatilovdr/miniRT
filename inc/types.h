@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 18:25:43 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/06/24 21:29:18 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/06/25 00:16:09 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ struct s_scene
 	const t_list		*cylinders;
 	const t_list		*spheres;
 	const t_list		*planes;
-	int					width;
-	int					height;
 	mlx_t				*mlx;
 	mlx_image_t			*img;
 };

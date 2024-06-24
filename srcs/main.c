@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 11:56:40 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/06/24 21:30:19 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/06/24 23:35:21 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int32_t	main(int32_t argc, char **argv)
 			ft_dprintf(2, "miniRT: no camera found in scene file\n");
 		return (ft_return(1));
 	}
+	draw_scene(scene);
 	// _dbg_pscene(scene);
 	return (ft_return(0));
 }

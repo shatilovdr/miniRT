@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 18:25:43 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/06/25 00:16:09 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/06/25 00:18:26 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_light		t_light;
 typedef struct s_plane		t_plane;
 typedef struct s_vec3		t_vec3;
 typedef struct s_color		t_color;
+typedef struct s_transform	t_transform;
 typedef struct s_scene		t_scene;
 
 struct s_scene
@@ -93,6 +94,17 @@ struct s_cylinder
 	const float			diameter;
 	const float			height;
 	const t_color		color;
+};
+
+struct s_transform
+{
+	t_vec3	yaw_axis;
+	float	yaw_cos;
+	float	yaw_sin;
+	t_vec3	pitch_axis;
+	float	pitch_cos;
+	float	pitch_sin;
+	float	z_dist;
 };
 
 #endif

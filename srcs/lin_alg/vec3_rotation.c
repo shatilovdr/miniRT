@@ -6,13 +6,13 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 10:20:53 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/05/29 12:36:22 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/06/24 21:31:37 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lin_alg.h"
+#include "minirt.h"
 
-t_vec3	rotate_x(t_vec3 vec, double angle)
+t_vec3	rotate_x(t_vec3 vec, float angle)
 {
 	t_vec3	row1;
 	t_vec3	row2;
@@ -29,7 +29,7 @@ t_vec3	rotate_x(t_vec3 vec, double angle)
 	return (rotated);
 }
 
-t_vec3	rotate_y(t_vec3 vec, double angle)
+t_vec3	rotate_y(t_vec3 vec, float angle)
 {
 	t_vec3	row1;
 	t_vec3	row2;
@@ -46,7 +46,7 @@ t_vec3	rotate_y(t_vec3 vec, double angle)
 	return (rotated);
 }
 
-t_vec3	rotate_z(t_vec3 vec, double angle)
+t_vec3	rotate_z(t_vec3 vec, float angle)
 {
 	t_vec3	row1;
 	t_vec3	row2;

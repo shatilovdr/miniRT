@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivalimak <ivalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 18:57:28 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/05/27 20:49:00 by ivalimak         ###   ########.fr       */
+/*   Updated: 2024/06/24 21:25:54 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt_error.h"
+#include "minirt.h"
 #include "ft_stdio/ft_printf.h"
 
 int32_t	rt_perror(void)

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   file.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivalimak <ivalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 18:51:32 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/05/29 10:43:39 by ivalimak         ###   ########.fr       */
+/*   Updated: 2024/06/24 21:25:35 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "file.h"
+#include "minirt.h"
 
 static inline uint8_t	_checktype(t_scene *scene, const char *line);
 static inline uint8_t	_getobj(t_scene *scene, const char *line, uint8_t type);

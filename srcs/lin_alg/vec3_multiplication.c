@@ -6,18 +6,18 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 10:17:57 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/05/29 12:38:46 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/06/24 21:31:07 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lin_alg.h"
+#include "minirt.h"
 
-double	dot(t_vec3 a, t_vec3 b)
+float	dot(t_vec3 a, t_vec3 b)
 {
 	return (a.x * b.x + a.y * b.y + a.z * b.z);
 }
 
-double	dot2(t_vec3 a)
+float	dot2(t_vec3 a)
 {
 	return (dot(a, a));
 }

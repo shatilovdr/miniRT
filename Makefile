@@ -6,7 +6,7 @@
 #    By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/27 17:31:32 by ivalimak          #+#    #+#              #
-#    Updated: 2024/05/29 12:37:38 by dshatilo         ###   ########.fr        #
+#    Updated: 2024/06/24 21:27:18 by dshatilo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,16 +26,15 @@ CC				:=	cc
 cflags.common	:=	-Wall -Wextra -Werror
 cflags.debug	:=	-g
 cflags.asan		:=	$(cflags.debug) -fsanitize=address
-cflags.normal	:=	-Ofast
-cflags.extra	:=	
+# cflags.normal	:=	-Ofast
+cflags.extra	:=	-g
 CFLAGS			:=	$(cflags.common) $(cflags.$(BUILD)) $(cflags.extra) $(INCLUDE)
 
 ifeq ($(shell uname),Linux)
 	LDFLAGS	:=	-L$(LFTDIR) -L$(MLXDIR)/build -lft -lmlx42 -ldl -lglfw -pthread -lm
 else
-	LDFLAGS	:=	-L$(LFTDIR) -L$(MLXDIR)/build -L"/Users/$(USER)/.brew/opt/glfw/lib" -lft -lmlx42 -lglfw -framework Cocoa -framework OpenGL -framework IOKit
+	LDFLAGS	:=	-L$(LFTDIR) -L$(MLXDIR)/build -L"/opt/homebrew/Cellar/glfw/3.3.9/lib/" -lft -lmlx42 -lglfw -framework Cocoa -framework OpenGL -framework IOKit
 endif
-
 
 PARSER_NAME		:=	element.c \
 					error.c \

@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 11:56:40 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/05/29 12:16:52 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/06/12 21:21:47 by ivalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,14 @@ int32_t	main(int32_t argc, char **argv)
 	else
 	{
 		ft_dprintf(2, "miniRT: usage: miniRT [scene file]\n");
+		return (ft_return(1));
+	}
+	if (!scene->light || !scene->cam)
+	{
+		if (!scene->light)
+			ft_dprintf(2, "miniRT: no light found in scene file\n");
+		if (!scene->cam)
+			ft_dprintf(2, "miniRT: no camera found in scene file\n");
 		return (ft_return(1));
 	}
 	_dbg_pscene(scene);

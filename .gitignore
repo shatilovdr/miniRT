@@ -7,3 +7,4 @@ objs/
 README.md
 miniRT
 .clangd
+compile_commands.json

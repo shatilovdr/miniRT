@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:51:00 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/06/25 00:13:55 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/06/25 11:41:24 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int32_t		rt_ferror(const char *err);
 
 # define WIDTH 1280
 # define HEIGHT 720
+
+# define EPSILON 0.00001
 
 // file.c
 t_scene		*parsefile(const char *path);
@@ -68,11 +70,6 @@ float		dot(t_vec3 a, t_vec3 b);
 float		dot2(t_vec3 a);
 t_vec3		cross(t_vec3 a, t_vec3 b);
 
-// vec3_rotation.c
-t_vec3	rotate_y(t_vec3 vec, float angle);
-t_vec3	rotate_z(t_vec3 vec, float angle);
-t_vec3	rotate_x(t_vec3 vec, float angle);
-
 // vec3_operations2.c
 float		vec3_norm(t_vec3 v);
 t_vec3		vec3_unit(t_vec3 p);
@@ -85,5 +82,18 @@ int			draw_scene(t_scene *scene);
 
 // calculate_img.c
 void		calculate_img(t_scene *scene);
+
+// init_transform.c
+t_transform	init_transform(t_scene *scene);
+
+// get_pixel_vector.c
+t_vec3		get_pixel_vector(t_scene *scene, t_transform *t, int x, int y);
+
+// hit_objects.c
+void		hit_objects(t_scene *scene, t_pixel *pixel);
+
+// hit_spheres.c
+void		hit_spheres(const t_list *spheres, t_pixel *pixel,
+				const t_vec3 *camera_pos);
 
 #endif

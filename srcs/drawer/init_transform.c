@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 21:12:51 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/06/24 23:52:08 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/06/25 11:39:42 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 t_transform	init_transform(t_scene *scene)
 {
-	t_transform	transform;
-	t_camera	*camera;
-	t_vec3		orientation;
+	t_transform		transform;
+	const t_camera	*camera;
+	t_vec3			orientation;
 
 	camera = scene->cam;
 	orientation = camera->orientation;

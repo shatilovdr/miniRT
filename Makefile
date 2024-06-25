@@ -34,13 +34,16 @@ PARSER			:=	$(addprefix $(PARSER_PATH)/, $(PARSER_NAME))
 
 LIN_ALG_NAME	:=	vec3_operations.c \
 					vec3_operations2.c \
-					vec3_multiplication.c \
-					vec3_rotation.c
+					vec3_multiplication.c
 LIN_ALG_PATH	:=	lin_alg
 LIN_ALG			:=	$(addprefix $(LIN_ALG_PATH)/, $(LIN_ALG_NAME))
 
 DRAWER_NAME	:=	draw_scene.c \
-				calculate_img.c
+				calculate_img.c \
+				init_transform.c \
+				get_pixel_vector.c \
+				hit_objects.c \
+				hit_spheres.c
 DRAWER_PATH	:=	drawer
 DRAWER			:=	$(addprefix $(DRAWER_PATH)/, $(DRAWER_NAME))
 

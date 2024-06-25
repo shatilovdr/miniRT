@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:55:43 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/06/25 11:44:19 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/06/25 17:49:30 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	hit_spheres(const t_list *spheres, t_pixel *pixel,
 	{
 		sphere = (t_sphere *)spheres->blk;
 		if (hit_sphere(sphere, &temp, camera_pos) == true
-			&& (temp.dist < pixel->dist || pixel->dist == -1))
+			&& (temp.dist < pixel->dist || pixel->type == OBJ_NONE))
 		{
 			pixel->dist = temp.dist;
 			pixel->type = temp.type;
@@ -43,7 +43,6 @@ void	hit_spheres(const t_list *spheres, t_pixel *pixel,
 // 	float		c;
 // 	float		discriminant;
 // };
-
 // typedef struct s_quadratic_coefs	t_quadratic_coefs;
 
 static bool	hit_sphere(t_sphere *sphere, t_pixel *pix, const t_vec3 *camera_pos)
@@ -70,4 +69,3 @@ static bool	hit_sphere(t_sphere *sphere, t_pixel *pix, const t_vec3 *camera_pos)
 	pix->obj = sphere;
 	return (true);
 }
-

@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 18:25:43 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/06/25 11:31:18 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/06/25 12:08:57 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ struct s_pixel
 	double	dist;
 	t_vec3	h_point;
 	t_vec3	hp_norm;
-	t_color	color;
 };
 
 #endif

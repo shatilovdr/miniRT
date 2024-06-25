@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:51:00 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/06/25 11:41:24 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/06/25 17:43:46 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 int32_t		rt_perror(void);
 int32_t		rt_ferror(const char *err);
 
+# define OBJ_NONE -1
 # define OBJ_SPH 0
 # define OBJ_PLN 1
 # define OBJ_CYL 2
@@ -95,5 +96,8 @@ void		hit_objects(t_scene *scene, t_pixel *pixel);
 // hit_spheres.c
 void		hit_spheres(const t_list *spheres, t_pixel *pixel,
 				const t_vec3 *camera_pos);
+
+// get_color.c
+t_color		get_color(t_scene *scene, t_pixel *pixel);
 
 #endif

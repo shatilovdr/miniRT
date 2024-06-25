@@ -43,7 +43,8 @@ DRAWER_NAME	:=	draw_scene.c \
 				init_transform.c \
 				get_pixel_vector.c \
 				hit_objects.c \
-				hit_spheres.c
+				hit_spheres.c \
+				get_color.c
 DRAWER_PATH	:=	drawer
 DRAWER			:=	$(addprefix $(DRAWER_PATH)/, $(DRAWER_NAME))
 

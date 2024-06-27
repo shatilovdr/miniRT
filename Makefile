@@ -41,10 +41,11 @@ LIN_ALG			:=	$(addprefix $(LIN_ALG_PATH)/, $(LIN_ALG_NAME))
 DRAWER_NAME	:=	draw_scene.c \
 				calculate_img.c \
 				init_transform.c \
-				get_pixel_vector.c \
+				get_ray_direction.c \
 				hit_objects.c \
 				hit_spheres.c \
-				get_color.c
+				get_color.c \
+				color_alg.c
 DRAWER_PATH	:=	drawer
 DRAWER			:=	$(addprefix $(DRAWER_PATH)/, $(DRAWER_NAME))
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_pixel_vector.c                                 :+:      :+:    :+:   */
+/*   get_ray_direction.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:55:43 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/06/25 11:36:08 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/06/28 11:27:56 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static t_vec3	vec3_rotate(t_vec3 vec, t_vec3 *axis, float sin, float cos);
 
-t_vec3	get_pixel_vector(t_scene *scene, t_transform *t, int x, int y)
+t_vec3	get_ray_direction(t_scene *scene, t_transform *t, int x, int y)
 {
 	t_vec3	r_vec;
 

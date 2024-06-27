@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 18:25:43 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/06/25 12:08:57 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/06/28 11:26:20 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct s_plane		t_plane;
 typedef struct s_vec3		t_vec3;
 typedef struct s_color		t_color;
 typedef struct s_transform	t_transform;
-typedef struct s_pixel		t_pixel;
+typedef struct s_ray		t_ray;
 typedef struct s_scene		t_scene;
 
 struct s_scene
@@ -108,9 +108,10 @@ struct s_transform
 	float	z_dist;
 };
 
-struct s_pixel
+struct s_ray
 {
-	t_vec3	r_vec;
+	t_vec3	direction;
+	t_vec3	origin;
 	int		type;
 	void	*obj;
 	double	dist;

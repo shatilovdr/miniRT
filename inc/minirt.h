@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:51:00 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/06/25 17:43:46 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/06/28 11:25:47 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,17 +87,22 @@ void		calculate_img(t_scene *scene);
 // init_transform.c
 t_transform	init_transform(t_scene *scene);
 
-// get_pixel_vector.c
-t_vec3		get_pixel_vector(t_scene *scene, t_transform *t, int x, int y);
+// get_ray_direction.c
+t_vec3		get_ray_direction(t_scene *scene, t_transform *t, int x, int y);
 
 // hit_objects.c
-void		hit_objects(t_scene *scene, t_pixel *pixel);
+void		hit_objects(t_scene *scene, t_ray *ray);
 
 // hit_spheres.c
-void		hit_spheres(const t_list *spheres, t_pixel *pixel,
-				const t_vec3 *camera_pos);
+void		hit_spheres(const t_list *spheres, t_ray *ray);
 
 // get_color.c
-t_color		get_color(t_scene *scene, t_pixel *pixel);
+uint32_t	get_color(t_scene *scene, t_ray *ray);
+
+// color_alg.c
+t_color		color_scale(t_color color, float scale);
+t_color		color_add(t_color a, t_color b);
+t_color		color_prod(t_color a, t_color b);
+uint32_t	color_to_int(t_color color);
 
 #endif

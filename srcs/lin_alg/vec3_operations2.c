@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 12:20:51 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/06/27 22:10:36 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/09 11:59:00 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 float	vec3_norm(t_vec3 vect)
 {
-	return (sqrt(dot2(vect)));
+	return (sqrt(vec3_dot2(vect)));
 }
 
 t_vec3	vec3_unit(t_vec3 vect)
@@ -31,7 +31,7 @@ t_vec3	vec3_unit(t_vec3 vect)
 
 float	vec3_cos(t_vec3 a, t_vec3 b)
 {
-	return (dot(a, b) / (vec3_norm(a) * vec3_norm(b)));
+	return (vec3_dot(a, b) / (vec3_norm(a) * vec3_norm(b)));
 }
 
 float	vec3_sin(t_vec3 a, t_vec3 b)
@@ -39,7 +39,7 @@ float	vec3_sin(t_vec3 a, t_vec3 b)
 	return (sqrt(1 - pow(vec3_cos(a, b), 2)));
 }
 
-float	distance(t_vec3 a, t_vec3 b)
+float	vec3_distance(t_vec3 a, t_vec3 b)
 {
 	float	d;
 

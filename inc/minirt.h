@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:51:00 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/06/28 11:25:47 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/10 10:41:48 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,16 +67,16 @@ t_vec3		vec3_prod(t_vec3 a, t_vec3 b);
 t_vec3		vec3_scale(float n, t_vec3 p);
 
 // vec3_multiplication.c
-float		dot(t_vec3 a, t_vec3 b);
-float		dot2(t_vec3 a);
-t_vec3		cross(t_vec3 a, t_vec3 b);
+float		vec3_dot(t_vec3 a, t_vec3 b);
+float		vec3_dot2(t_vec3 a);
+t_vec3		vec3_cross(t_vec3 a, t_vec3 b);
 
 // vec3_operations2.c
 float		vec3_norm(t_vec3 v);
 t_vec3		vec3_unit(t_vec3 p);
 float		vec3_cos(t_vec3 a, t_vec3 b);
 float		vec3_sin(t_vec3 a, t_vec3 b);
-float		distance(t_vec3 p1, t_vec3 p2);
+float		vec3_distance(t_vec3 p1, t_vec3 p2);
 
 // draw_scene.c
 int			draw_scene(t_scene *scene);

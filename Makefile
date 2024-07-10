@@ -50,9 +50,9 @@ DRAWER_PATH	:=	drawer
 DRAWER			:=	$(addprefix $(DRAWER_PATH)/, $(DRAWER_NAME))
 
 SRCS			:=	$(addprefix $(SRCDIR)/, main.c) \
-					$(addprefix $(SRCDIR)/, $(PARSER)) \
 					$(addprefix $(SRCDIR)/, $(LIN_ALG)) \
 					$(addprefix $(SRCDIR)/, $(DRAWER))
+#					$(addprefix $(SRCDIR)/, $(PARSER)) \
 
 OBJS			:=	$(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
 

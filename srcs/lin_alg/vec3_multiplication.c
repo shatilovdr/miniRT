@@ -6,23 +6,23 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 10:17:57 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/06/24 21:31:07 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/09 11:57:04 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-float	dot(t_vec3 a, t_vec3 b)
+float	vec3_dot(t_vec3 a, t_vec3 b)
 {
 	return (a.x * b.x + a.y * b.y + a.z * b.z);
 }
 
-float	dot2(t_vec3 a)
+float	vec3_dot2(t_vec3 a)
 {
-	return (dot(a, a));
+	return (vec3_dot(a, a));
 }
 
-t_vec3	cross(t_vec3 a, t_vec3 b)
+t_vec3	vec3_cross(t_vec3 a, t_vec3 b)
 {
 	t_vec3	cp;
 

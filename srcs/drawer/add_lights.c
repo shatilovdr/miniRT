@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 21:19:26 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/10 21:20:19 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/10 21:40:36 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static t_color	apply_phong_model(t_scene *scene, t_ray *ray, t_light *light)
 	diffuse = vec3_dot(light_dir, ray->hp_norm);
 	view_dir = vec3_unit(vec3_sub(ray->h_point, scene->cam->pos));
 	reflect_dir = vec3_unit(vec3_sub(light_dir,
-				vec3_scale(2.0f * diffuse, ray->hp_norm)));
+				vec3_scale(ray->hp_norm, 2.0f * diffuse)));
 	specular = pow(fmax(vec3_dot(view_dir, reflect_dir), 0.0), 32);
 	return (
 		color_scale(light->color, (specular + diffuse) * light->brightness));

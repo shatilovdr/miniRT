@@ -44,6 +44,7 @@ DRAWER_NAME	:=	draw_scene.c \
 				get_ray_direction.c \
 				hit_objects.c \
 				hit_spheres.c \
+				hit_planes.c \
 				get_color.c \
 				color_alg.c \
 				add_lights.c

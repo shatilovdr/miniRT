@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:51:00 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/10 21:24:32 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/10 23:10:35 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_vec3		vec3(float x, float y, float z);
 t_vec3		vec3_add(t_vec3 a, t_vec3 b);
 t_vec3		vec3_sub(t_vec3 a, t_vec3 b);
 t_vec3		vec3_prod(t_vec3 a, t_vec3 b);
-t_vec3		vec3_scale(float n, t_vec3 p);
+t_vec3		vec3_scale(t_vec3 v, float coef);
 
 // vec3_multiplication.c
 float		vec3_dot(t_vec3 a, t_vec3 b);
@@ -95,6 +95,9 @@ void		hit_objects(t_scene *scene, t_ray *ray);
 
 // hit_spheres.c
 void		hit_spheres(const t_list *spheres, t_ray *ray);
+
+// hit_planes.c
+void		hit_planes(const t_list *planes, t_ray *ray);
 
 // get_color.c
 uint32_t	get_color(t_scene *scene, t_ray *ray);

@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:55:43 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/09 11:59:53 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/10 23:32:33 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,6 @@ void	hit_spheres(const t_list *spheres, t_ray *ray)
 	}
 }
 
-// struct s_quadratic_coefs
-// {
-// 	float		a;
-// 	float		b;
-// 	float		c;
-// 	float		discriminant;
-// };
-// typedef struct s_quadratic_coefs	t_quadratic_coefs;
-
 static bool	hit_sphere(t_sphere *sphere, t_ray *ray)
 {
 	float	a;
@@ -65,10 +56,10 @@ static bool	hit_sphere(t_sphere *sphere, t_ray *ray)
 		ray->dist = (-b + sqrt(discriminant)) / (2 * a);
 	if (ray->dist <= EPSILON)
 		return (false);
-	ray->h_point = vec3_add(ray->origin, vec3_scale(ray->dist, ray->direction));
+	ray->h_point = vec3_add(ray->origin, vec3_scale(ray->direction, ray->dist));
 	ray->hp_norm = vec3_unit(vec3_sub(ray->h_point, sphere->pos));
 	if (vec3_dot(ray->direction, ray->hp_norm) > 0)
-		ray->hp_norm = vec3_scale(-1, ray->hp_norm);
+		ray->hp_norm = vec3_scale(ray->hp_norm, -1);
 	ray->obj = sphere;
 	return (true);
 }

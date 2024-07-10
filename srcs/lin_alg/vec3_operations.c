@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 09:56:19 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/06/24 21:31:16 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/10 21:38:37 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_vec3	vec3_prod(t_vec3 a, t_vec3 b)
 	return (prod);
 }
 
-t_vec3	vec3_scale(float coef, t_vec3 v)
+t_vec3	vec3_scale(t_vec3 v, float coef)
 {
 	t_vec3	new;
 

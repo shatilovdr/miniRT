@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 18:25:43 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/06/28 11:26:20 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/06/28 11:46:55 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ struct s_scene
 	int32_t				fd;
 	const t_amb_light	*amb;
 	const t_camera		*cam;
-	const t_light		*light;
+	const t_list		*lights;
 	const t_list		*cylinders;
 	const t_list		*spheres;
 	const t_list		*planes;

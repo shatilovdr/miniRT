@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:55:43 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/06/28 11:29:49 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/09 11:59:53 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ void	hit_spheres(const t_list *spheres, t_ray *ray)
 		if (hit_sphere(sphere, &temp) == true
 			&& (temp.dist < ray->dist || ray->type == OBJ_NONE))
 		{
-			ray->dist = temp.dist;
-			ray->type = temp.type;
+			ray->type = OBJ_SPH;
 			ray->obj = temp.obj;
+			ray->dist = temp.dist;
+			ray->h_point = temp.h_point;
+			ray->hp_norm = temp.hp_norm;
 		}
 		spheres = spheres->next;
 	}
@@ -52,9 +54,9 @@ static bool	hit_sphere(t_sphere *sphere, t_ray *ray)
 	t_vec3	sp_vec;
 
 	sp_vec = vec3_sub(ray->origin, sphere->pos);
-	a = dot(ray->direction, ray->direction);
-	b = 2.0 * dot(sp_vec, ray->direction);
-	c = dot(sp_vec, sp_vec) - pow(sphere->diameter / 2, 2);
+	a = vec3_dot(ray->direction, ray->direction);
+	b = 2.0 * vec3_dot(sp_vec, ray->direction);
+	c = vec3_dot(sp_vec, sp_vec) - pow(sphere->diameter / 2, 2);
 	discriminant = b * b - 4 * a * c;
 	if (discriminant < 0)
 		return (false);
@@ -63,7 +65,10 @@ static bool	hit_sphere(t_sphere *sphere, t_ray *ray)
 		ray->dist = (-b + sqrt(discriminant)) / (2 * a);
 	if (ray->dist <= EPSILON)
 		return (false);
-	ray->type = OBJ_SPH;
+	ray->h_point = vec3_add(ray->origin, vec3_scale(ray->dist, ray->direction));
+	ray->hp_norm = vec3_unit(vec3_sub(ray->h_point, sphere->pos));
+	if (vec3_dot(ray->direction, ray->hp_norm) > 0)
+		ray->hp_norm = vec3_scale(-1, ray->hp_norm);
 	ray->obj = sphere;
 	return (true);
 }

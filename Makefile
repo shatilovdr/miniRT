@@ -33,8 +33,7 @@ PARSER_PATH		:=	parser
 PARSER			:=	$(addprefix $(PARSER_PATH)/, $(PARSER_NAME))
 
 LIN_ALG_NAME	:=	vec3_operations.c \
-					vec3_operations2.c \
-					vec3_multiplication.c
+					vec3_operations2.c
 LIN_ALG_PATH	:=	lin_alg
 LIN_ALG			:=	$(addprefix $(LIN_ALG_PATH)/, $(LIN_ALG_NAME))
 

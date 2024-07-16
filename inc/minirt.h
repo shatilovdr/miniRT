@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:51:00 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/10 23:10:35 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/16 17:45:22 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,23 +60,18 @@ t_vec3		*getvec3(const char **line, const long double range[2]);
 
 
 // vec3_operations.c
-t_vec3		vec3(float x, float y, float z);
 t_vec3		vec3_add(t_vec3 a, t_vec3 b);
 t_vec3		vec3_sub(t_vec3 a, t_vec3 b);
-t_vec3		vec3_prod(t_vec3 a, t_vec3 b);
 t_vec3		vec3_scale(t_vec3 v, float coef);
-
-// vec3_multiplication.c
 float		vec3_dot(t_vec3 a, t_vec3 b);
-float		vec3_dot2(t_vec3 a);
-t_vec3		vec3_cross(t_vec3 a, t_vec3 b);
+float		vec3_norm(t_vec3 v);
+
 
 // vec3_operations2.c
-float		vec3_norm(t_vec3 v);
 t_vec3		vec3_unit(t_vec3 p);
-float		vec3_cos(t_vec3 a, t_vec3 b);
-float		vec3_sin(t_vec3 a, t_vec3 b);
-float		vec3_distance(t_vec3 p1, t_vec3 p2);
+t_vec3		vec3_cross(t_vec3 a, t_vec3 b);
+bool		vec3_equals(t_vec3 *a, t_vec3 *b);
+float		vec3_distance(t_vec3 a, t_vec3 b);
 
 // draw_scene.c
 int			draw_scene(t_scene *scene);

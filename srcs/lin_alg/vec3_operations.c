@@ -6,21 +6,11 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 09:56:19 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/10 21:38:37 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/16 17:08:01 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-t_vec3	vec3(float x, float y, float z)
-{
-	t_vec3	vec3or;
-
-	vec3or.x = x;
-	vec3or.y = y;
-	vec3or.z = z;
-	return (vec3or);
-}
 
 t_vec3	vec3_add(t_vec3 a, t_vec3 b)
 {
@@ -42,16 +32,6 @@ t_vec3	vec3_sub(t_vec3 a, t_vec3 b)
 	return (diff);
 }
 
-t_vec3	vec3_prod(t_vec3 a, t_vec3 b)
-{
-	t_vec3	prod;
-
-	prod.x = a.x * b.x;
-	prod.y = a.y * b.y;
-	prod.z = a.z * b.z;
-	return (prod);
-}
-
 t_vec3	vec3_scale(t_vec3 v, float coef)
 {
 	t_vec3	new;
@@ -60,4 +40,14 @@ t_vec3	vec3_scale(t_vec3 v, float coef)
 	new.y = coef * v.y;
 	new.z = coef * v.z;
 	return (new);
+}
+
+float	vec3_dot(t_vec3 a, t_vec3 b)
+{
+	return (a.x * b.x + a.y * b.y + a.z * b.z);
+}
+
+float	vec3_norm(t_vec3 vect)
+{
+	return (sqrt(vec3_dot(vect, vect)));
 }

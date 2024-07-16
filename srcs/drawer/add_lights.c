@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 21:19:26 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/10 21:40:36 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/16 17:03:37 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,12 @@ t_color	add_lights(t_ray *ray, t_scene *scene, t_color obj_color)
 bool	is_in_shadow(t_light *light, t_ray *ray, t_scene *scene)
 {
 	t_ray	light_ray;
-	float	distance;
 
 	light_ray.direction = vec3_unit(vec3_sub(ray->h_point, light->pos));
 	light_ray.origin = light->pos;
-	distance = vec3_distance(ray->h_point, light->pos);
 	hit_objects(scene, &light_ray);
-	if (light_ray.type != OBJ_NONE && light_ray.dist + 0.01 < distance)
+	if (light_ray.type != OBJ_NONE
+		&& vec3_equals(&light_ray.h_point, &ray->h_point) == false)
 		return (true);
 	return (false);
 }

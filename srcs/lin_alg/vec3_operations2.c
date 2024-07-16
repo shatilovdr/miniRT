@@ -5,17 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 12:20:51 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/09 11:59:00 by dshatilo         ###   ########.fr       */
+/*   Created: 2024/05/27 10:17:57 by dshatilo          #+#    #+#             */
+/*   Updated: 2024/07/16 17:44:09 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-float	vec3_norm(t_vec3 vect)
-{
-	return (sqrt(vec3_dot2(vect)));
-}
 
 t_vec3	vec3_unit(t_vec3 vect)
 {
@@ -29,14 +24,25 @@ t_vec3	vec3_unit(t_vec3 vect)
 	return (unit);
 }
 
-float	vec3_cos(t_vec3 a, t_vec3 b)
+t_vec3	vec3_cross(t_vec3 a, t_vec3 b)
 {
-	return (vec3_dot(a, b) / (vec3_norm(a) * vec3_norm(b)));
+	t_vec3	cp;
+
+	cp.x = a.y * b.z - a.z * b.y;
+	cp.y = a.z * b.x - a.x * b.z;
+	cp.z = a.x * b.y - a.y * b.x;
+	return (cp);
 }
 
-float	vec3_sin(t_vec3 a, t_vec3 b)
+bool	vec3_equals(t_vec3 *a, t_vec3 *b)
 {
-	return (sqrt(1 - pow(vec3_cos(a, b), 2)));
+	if (fabs(a->x - b->x) > 0.001)
+		return (false);
+	if (fabs(a->y - b->y) > 0.001)
+		return (false);
+	if (fabs(a->z - b->z) > 0.001)
+		return (false);
+	return (true);
 }
 
 float	vec3_distance(t_vec3 a, t_vec3 b)

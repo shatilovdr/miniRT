@@ -6,37 +6,30 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:55:43 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/10 23:25:12 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/17 16:58:46 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static bool	hit_plane(t_plane *plane, t_ray *ray);
+static bool	hit_plane(t_plane *plane, t_ray *ray, t_hp *hp);
 
 void	hit_planes(const t_list *planes, t_ray *ray)
 {
 	t_plane	*plane;
-	t_ray	temp;
+	t_hp	hp;
 
-	temp = *ray;
 	while (planes)
 	{
 		plane = (t_plane *)planes->blk;
-		if (hit_plane(plane, &temp) == true
-			&& (temp.dist < ray->dist || ray->type == OBJ_NONE))
-		{
-			ray->type = OBJ_PLN;
-			ray->obj = temp.obj;
-			ray->dist = temp.dist;
-			ray->h_point = temp.h_point;
-			ray->hp_norm = temp.hp_norm;
-		}
+		if (hit_plane(plane, ray, &hp) == true
+			&& (hp.dist < ray->hp.dist || ray->hp.type == OBJ_NONE))
+			ray->hp = hp;
 		planes = planes->next;
 	}
 }
 
-static bool	hit_plane(t_plane *plane, t_ray *ray)
+static bool	hit_plane(t_plane *plane, t_ray *ray, t_hp *hp)
 {
 	t_vec3	normal;
 
@@ -47,12 +40,13 @@ static bool	hit_plane(t_plane *plane, t_ray *ray)
 		return (false);
 	if (vec3_dot(ray->direction, normal) > 0)
 		normal = vec3_scale(normal, -1);
-	ray->dist = vec3_dot(vec3_sub(plane->pos, ray->origin), normal)
+	hp->dist = vec3_dot(vec3_sub(plane->pos, ray->origin), normal)
 		/ vec3_dot(ray->direction, normal);
-	if (ray->dist <= 0)
+	if (hp->dist <= 0)
 		return (false);
-	ray->h_point = vec3_add(ray->origin, vec3_scale(ray->direction, ray->dist));
-	ray->hp_norm = normal;
-	ray->obj = plane;
+	hp->type = OBJ_PLN;
+	hp->obj = plane;
+	hp->loc = vec3_add(ray->origin, vec3_scale(ray->direction, hp->dist));
+	hp->norm = normal;
 	return (true);
 }

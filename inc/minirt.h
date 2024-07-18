@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:51:00 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/16 17:45:22 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/17 17:48:04 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,15 @@ int32_t		rt_ferror(const char *err);
 # define HEIGHT 720
 
 # define EPSILON 0.00001
+
+enum	e_surf_types
+{
+	CY_BASE_1,
+	CY_BASE_2,
+	CY_CURVED,
+	CO_BASE,
+	CO_CURVED
+};
 
 // file.c
 t_scene		*parsefile(const char *path);
@@ -93,6 +102,7 @@ void		hit_spheres(const t_list *spheres, t_ray *ray);
 
 // hit_planes.c
 void		hit_planes(const t_list *planes, t_ray *ray);
+bool		hit_plane(t_plane *plane, t_ray *ray, t_hp *hp);
 
 // get_color.c
 uint32_t	get_color(t_scene *scene, t_ray *ray);

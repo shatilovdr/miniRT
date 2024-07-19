@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:55:43 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/19 13:09:07 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/19 17:28:09 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,6 @@ static bool	hit_cylinder(t_cylinder *cylinder, t_ray *ray, t_hp *hp)
 	t_hp	curved_surface;
 	t_hp	*temp;
 
-	base_1.surf_type = CY_BASE_1;
-	base_2.surf_type = CY_BASE_1;
-	curved_surface.surf_type = CY_CURVED;
-	base_1.type = OBJ_NONE;
-	base_2.type = OBJ_NONE;
-	curved_surface.type = OBJ_NONE;
 	hit_cylinder_base(cylinder, ray, &base_1, (t_vec3){0});
 	hit_cylinder_base(cylinder, ray, &base_2,
 		vec3_scale(cylinder->axis, cylinder->height));
@@ -67,7 +61,10 @@ static void	hit_cylinder_base(
 
 	if (hit_plane(&plane, ray, hp) == true
 		&& vec3_distance(hp->pos, plane.pos) <= cy->diameter / 2)
+	{
 		hp->type = OBJ_CYL;
+		hp->surf_type = BASE;
+	}
 	else
 		hp->type = OBJ_NONE;
 }
@@ -79,6 +76,7 @@ static void	hit_curved_surface(t_cylinder *cylinder, t_ray *ray, t_hp *hp)
 	t_vec3		hp_to_cyl_pos;
 	t_vec3		proj;
 
+	hp->type = OBJ_NONE;
 	vec = vec3_sub(ray->origin, cylinder->pos);
 	eq.a = vec3_dot2(vec3_cross(ray->direction, cylinder->axis)); //axis_must_be_unit
 	eq.b = (vec3_dot(vec, ray->direction) - vec3_dot(cylinder->axis, vec)
@@ -86,10 +84,12 @@ static void	hit_curved_surface(t_cylinder *cylinder, t_ray *ray, t_hp *hp)
 	eq.c = vec3_dot2(vec) - pow(vec3_dot(cylinder->axis, vec), 2)
 		- pow(cylinder->diameter / 2, 2);
 	eq.discriminant = eq.b * eq.b - eq.c / eq.a;
+	if (eq.discriminant < 0)
+		return ;
 	check_cylinder_intersection(cylinder, ray, &eq, hp);
 	if (hp->type == OBJ_NONE)
 		return ;
-	hp->surf_type = CY_CURVED;
+	hp->surf_type = CURVED;
 	hp_to_cyl_pos = vec3_sub(hp->pos, cylinder->pos);
 	proj = vec3_scale(cylinder->axis, vec3_dot(hp_to_cyl_pos, cylinder->axis)
 			/ vec3_dot(cylinder->axis, cylinder->axis));

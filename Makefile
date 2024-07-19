@@ -14,8 +14,8 @@ CC				:=	cc
 cflags.common	:=	-Wall -Wextra -Werror
 cflags.debug	:=	-g
 cflags.asan		:=	$(cflags.debug) -fsanitize=address
-# cflags.normal	:=	-Ofast
-cflags.extra	:=	-g
+cflags.normal	:=	-Ofast
+cflags.extra	:=	
 CFLAGS			:=	$(cflags.common) $(cflags.$(BUILD)) $(cflags.extra) $(INCLUDE)
 
 ifeq ($(shell uname),Linux)
@@ -45,6 +45,7 @@ DRAWER_NAME	:=	draw_scene.c \
 				hit_spheres.c \
 				hit_planes.c \
 				hit_cylinders.c \
+				hit_cones.c \
 				select_closest_hp.c \
 				get_color.c \
 				color_alg.c \

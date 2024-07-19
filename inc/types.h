@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 18:25:43 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/07/19 13:11:29 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/19 14:42:54 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 typedef struct s_amb_light	t_amb_light;
 typedef struct s_cylinder	t_cylinder;
+typedef struct s_cone		t_cone;
 typedef struct s_camera		t_camera;
 typedef struct s_sphere		t_sphere;
 typedef struct s_light		t_light;
@@ -38,6 +39,7 @@ struct s_scene
 	const t_list		*cylinders;
 	const t_list		*spheres;
 	const t_list		*planes;
+	const t_list		*cones;
 	mlx_t				*mlx;
 	mlx_image_t			*img;
 };
@@ -91,6 +93,15 @@ struct s_plane
 };
 
 struct s_cylinder
+{
+	const t_vec3		pos;
+	const t_vec3		axis;
+	const float			diameter;
+	const float			height;
+	const t_color		color;
+};
+
+struct s_cone
 {
 	const t_vec3		pos;
 	const t_vec3		axis;

@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:51:00 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/19 13:11:03 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/19 14:49:46 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int32_t		rt_ferror(const char *err);
 # define OBJ_SPH 0
 # define OBJ_PLN 1
 # define OBJ_CYL 2
+# define OBJ_CONE 3
 
 # define POS_MAX 42000.0L
 # define POS_MIN -42000.0L
@@ -39,14 +40,9 @@ int32_t		rt_ferror(const char *err);
 
 # define EPSILON 0.00001
 
-enum	e_surf_types
-{
-	CY_BASE_1,
-	CY_BASE_2,
-	CY_CURVED,
-	CO_BASE,
-	CO_CURVED
-};
+# define BASE 0
+# define CURVED 1
+
 
 // file.c
 t_scene		*parsefile(const char *path);
@@ -106,6 +102,9 @@ bool		hit_plane(const t_plane *plane, t_ray *ray, t_hp *hp);
 
 // hit_cylinders.c
 void		hit_cylinders(const t_list *cylinders, t_ray *ray);
+
+// hit_cones.c
+void		hit_cones(const t_list *cones, t_ray *ray);
 
 // select_closest_hp.c
 t_hp	*select_closest_hp(t_hp *a, t_hp *b);

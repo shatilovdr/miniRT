@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:51:00 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/19 14:49:46 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/19 18:58:19 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ int32_t		rt_ferror(const char *err);
 # define OBJ_NONE -1
 # define OBJ_SPH 0
 # define OBJ_PLN 1
-# define OBJ_CYL 2
-# define OBJ_CONE 3
+# define OBJ_CONIC 2
 
 # define POS_MAX 42000.0L
 # define POS_MIN -42000.0L
@@ -43,7 +42,6 @@ int32_t		rt_ferror(const char *err);
 # define BASE 0
 # define CURVED 1
 
-
 // file.c
 t_scene		*parsefile(const char *path);
 
@@ -53,7 +51,7 @@ t_camera	*parse_camera(const char *line, const t_scene *scene);
 t_light		*parse_light(const char *line, const t_scene *scene);
 
 // object.c
-t_cylinder	*parse_cyl(const char *line, const t_scene *scene);
+// t_cylinder	*parse_cyl(const char *line, const t_scene *scene);
 t_sphere	*parse_sph(const char *line, const t_scene *scene);
 t_plane		*parse_pln(const char *line, const t_scene *scene);
 
@@ -62,7 +60,6 @@ long double	getld(const char **line, const long double range[2]);
 uint8_t		getu8(const char **line, const uint8_t range[2]);
 t_color		*getcolor(const char **line, const uint8_t range[2]);
 t_vec3		*getvec3(const char **line, const long double range[2]);
-
 
 // vec3_operations.c
 t_vec3		vec3_add(t_vec3 a, t_vec3 b);
@@ -100,14 +97,17 @@ void		hit_spheres(const t_list *spheres, t_ray *ray);
 void		hit_planes(const t_list *planes, t_ray *ray);
 bool		hit_plane(const t_plane *plane, t_ray *ray, t_hp *hp);
 
+// hit_conics.c
+void		hit_base(t_conic *c, t_ray *ray, t_hp *hp, t_vec3 shift);
+t_hp		*select_closest_hp(t_hp *a, t_hp *b);
+void		check_conic_intersection(
+				t_conic *conic, t_ray *ray, t_quad_eq *eq, t_hp *hp);
+
 // hit_cylinders.c
 void		hit_cylinders(const t_list *cylinders, t_ray *ray);
 
 // hit_cones.c
 void		hit_cones(const t_list *cones, t_ray *ray);
-
-// select_closest_hp.c
-t_hp	*select_closest_hp(t_hp *a, t_hp *b);
 
 // get_color.c
 uint32_t	get_color(t_scene *scene, t_ray *ray);

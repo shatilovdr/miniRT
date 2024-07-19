@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 18:25:43 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/07/19 14:42:54 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/19 18:42:07 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 # include "MLX42/MLX42.h"
 
 typedef struct s_amb_light	t_amb_light;
-typedef struct s_cylinder	t_cylinder;
-typedef struct s_cone		t_cone;
+typedef struct s_conic		t_conic;
 typedef struct s_camera		t_camera;
 typedef struct s_sphere		t_sphere;
 typedef struct s_light		t_light;
@@ -92,16 +91,7 @@ struct s_plane
 	const t_color	color;
 };
 
-struct s_cylinder
-{
-	const t_vec3		pos;
-	const t_vec3		axis;
-	const float			diameter;
-	const float			height;
-	const t_color		color;
-};
-
-struct s_cone
+struct s_conic
 {
 	const t_vec3		pos;
 	const t_vec3		axis;

@@ -44,9 +44,9 @@ DRAWER_NAME	:=	draw_scene.c \
 				hit_objects.c \
 				hit_spheres.c \
 				hit_planes.c \
+				hit_conics.c \
 				hit_cylinders.c \
 				hit_cones.c \
-				select_closest_hp.c \
 				get_color.c \
 				color_alg.c \
 				add_lights.c

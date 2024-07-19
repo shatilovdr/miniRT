@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 18:25:43 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/07/18 18:19:44 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/19 13:11:29 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 # include "libft.h"
 # include "MLX42/MLX42.h"
 
-typedef struct s_amb_light			t_amb_light;
-typedef struct s_cylinder			t_cylinder;
-typedef struct s_camera				t_camera;
-typedef struct s_sphere				t_sphere;
-typedef struct s_light				t_light;
-typedef struct s_plane				t_plane;
-typedef struct s_vec3				t_vec3;
-typedef struct s_color				t_color;
-typedef struct s_transform			t_transform;
-typedef struct s_hp					t_hp;
-typedef struct s_ray				t_ray;
-typedef struct s_quadratic_equation	t_quadratic_equation;
-typedef struct s_scene				t_scene;
+typedef struct s_amb_light	t_amb_light;
+typedef struct s_cylinder	t_cylinder;
+typedef struct s_camera		t_camera;
+typedef struct s_sphere		t_sphere;
+typedef struct s_light		t_light;
+typedef struct s_plane		t_plane;
+typedef struct s_vec3		t_vec3;
+typedef struct s_color		t_color;
+typedef struct s_transform	t_transform;
+typedef struct s_hp			t_hp;
+typedef struct s_ray		t_ray;
+typedef struct s_quad_eq	t_quad_eq;
+typedef struct s_scene		t_scene;
 
 struct s_scene
 {
@@ -116,7 +116,7 @@ struct s_hp
 	void	*obj;
 	int		surf_type;
 	double	dist;
-	t_vec3	loc;
+	t_vec3	pos;
 	t_vec3	norm;
 };
 
@@ -127,7 +127,7 @@ struct s_ray
 	t_hp	hp;
 };
 
-struct s_quadratic_equation
+struct s_quad_eq
 {
 	float		a;
 	float		b;

@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 21:19:26 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/17 16:45:09 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/19 12:55:11 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ bool	is_in_shadow(t_light *light, t_ray *ray, t_scene *scene)
 {
 	t_ray	light_ray;
 
-	light_ray.direction = vec3_unit(vec3_sub(ray->hp.loc, light->pos));
+	light_ray.direction = vec3_unit(vec3_sub(ray->hp.pos, light->pos));
 	light_ray.origin = light->pos;
 	hit_objects(scene, &light_ray);
 	if (light_ray.hp.type != OBJ_NONE
-		&& vec3_equals(&light_ray.hp.loc, &ray->hp.loc) == false)
+		&& vec3_equals(&light_ray.hp.pos, &ray->hp.pos) == false)
 		return (true);
 	return (false);
 }
@@ -59,9 +59,9 @@ static t_color	apply_phong_model(t_scene *scene, t_ray *ray, t_light *light)
 	float	specular;
 	float	diffuse;
 
-	light_dir = vec3_unit(vec3_sub(light->pos, ray->hp.loc));
+	light_dir = vec3_unit(vec3_sub(light->pos, ray->hp.pos));
 	diffuse = vec3_dot(light_dir, ray->hp.norm);
-	view_dir = vec3_unit(vec3_sub(ray->hp.loc, scene->cam->pos));
+	view_dir = vec3_unit(vec3_sub(ray->hp.pos, scene->cam->pos));
 	reflect_dir = vec3_unit(vec3_sub(light_dir,
 				vec3_scale(ray->hp.norm, 2.0f * diffuse)));
 	specular = pow(fmax(vec3_dot(view_dir, reflect_dir), 0.0), 32);

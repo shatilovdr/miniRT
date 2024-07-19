@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:51:00 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/18 15:16:27 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/19 13:11:03 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,11 @@ void		hit_spheres(const t_list *spheres, t_ray *ray);
 void		hit_planes(const t_list *planes, t_ray *ray);
 bool		hit_plane(const t_plane *plane, t_ray *ray, t_hp *hp);
 
-//hit_cylinders.c
+// hit_cylinders.c
 void		hit_cylinders(const t_list *cylinders, t_ray *ray);
+
+// select_closest_hp.c
+t_hp	*select_closest_hp(t_hp *a, t_hp *b);
 
 // get_color.c
 uint32_t	get_color(t_scene *scene, t_ray *ray);

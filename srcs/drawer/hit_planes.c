@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:55:43 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/18 15:16:12 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/19 12:54:33 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	hit_planes(const t_list *planes, t_ray *ray)
 			ray->hp.type = OBJ_PLN;
 			ray->hp.obj = plane;
 			ray->hp.dist = hp.dist;
-			ray->hp.loc = hp.loc;
+			ray->hp.pos = hp.pos;
 			ray->hp.norm = hp.norm;
 		}
 		planes = planes->next;
@@ -50,7 +50,7 @@ bool	hit_plane(const t_plane *plane, t_ray *ray, t_hp *hp)
 		/ vec3_dot(ray->direction, normal);
 	if (hp->dist <= 0)
 		return (false);
-	hp->loc = vec3_add(ray->origin, vec3_scale(ray->direction, hp->dist));
+	hp->pos = vec3_add(ray->origin, vec3_scale(ray->direction, hp->dist));
 	hp->norm = normal;
 	return (true);
 }

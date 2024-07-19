@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 09:56:19 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/16 17:08:01 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/18 14:57:32 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ float	vec3_dot(t_vec3 a, t_vec3 b)
 	return (a.x * b.x + a.y * b.y + a.z * b.z);
 }
 
-float	vec3_norm(t_vec3 vect)
+float	vec3_dot2(t_vec3 a)
 {
-	return (sqrt(vec3_dot(vect, vect)));
+	return (vec3_dot(a, a));
 }

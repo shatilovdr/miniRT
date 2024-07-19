@@ -6,11 +6,16 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 10:17:57 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/16 17:44:09 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/18 14:57:39 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+float	vec3_norm(t_vec3 vect)
+{
+	return (sqrt(vec3_dot(vect, vect)));
+}
 
 t_vec3	vec3_unit(t_vec3 vect)
 {

@@ -6,13 +6,13 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:55:43 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/17 17:47:50 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/18 15:16:12 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-bool	hit_plane(t_plane *plane, t_ray *ray, t_hp *hp);
+bool	hit_plane(const t_plane *plane, t_ray *ray, t_hp *hp);
 
 void	hit_planes(const t_list *planes, t_ray *ray)
 {
@@ -35,7 +35,7 @@ void	hit_planes(const t_list *planes, t_ray *ray)
 	}
 }
 
-bool	hit_plane(t_plane *plane, t_ray *ray, t_hp *hp)
+bool	hit_plane(const t_plane *plane, t_ray *ray, t_hp *hp)
 {
 	t_vec3	normal;
 

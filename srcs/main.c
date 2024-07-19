@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 11:56:40 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/10 23:31:23 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/18 18:28:13 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,17 +150,28 @@
 
 int32_t main(void)
 {
-	t_light		light = {(t_vec3){5, 5, 0}, 0.5, (t_color){255, 255, 255}};
-	t_list		lights  = {&light, NULL, NULL, NULL};
-	t_amb_light	alight = {0.3, (t_color){255, 255, 255}};
-	t_camera	camera = {(t_vec3){0, 0, -10}, (t_vec3){0, 0, 1}, 60};
-	t_sphere	sphere = {(t_vec3){-2,0,0}, 3.0f, (t_color){0, 255, 0}};
-	t_sphere	sphere2 = {(t_vec3){1,0,0}, 1.0f, (t_color){255, 0, 0}};
-	t_list		spheres2  = {&sphere2, NULL, NULL, NULL};
-	t_list		spheres  = {&sphere, NULL, &spheres2, NULL};
-	t_plane		plane = {(t_vec3){0,0,0}, (t_vec3){0, 1, 0}, (t_color){0, 255, 0}};
-	t_list		planes  = {&plane, NULL, NULL, NULL};
-	t_scene		scene = {0, &alight, &camera, &lights, NULL, &spheres, &planes, NULL, NULL};
+	t_light		light		= {(t_vec3){5, 5, 0}, 0.5, (t_color){255, 255, 255}};
+	t_list		lights		= {&light, NULL, NULL, NULL};
+	t_amb_light	alight		= {0.3, (t_color){255, 255, 255}};
+	t_camera	camera		= {(t_vec3){0, 0, -10}, (t_vec3){0, 0, 1}, 100};
+
+	t_sphere	sphere		= {(t_vec3){-2,0,0}, 3.0f, (t_color){0, 255, 0}};
+	t_sphere	sphere2		= {(t_vec3){1,0,0}, 1.0f, (t_color){255, 0, 0}};
+	t_list		spheres2	= {&sphere2, NULL, NULL, NULL};
+	t_list		spheres		= {&sphere, NULL, &spheres2, NULL};
+
+	t_plane		plane		= {(t_vec3){1,0,0}, (t_vec3){0, 1, 0}, (t_color){0, 255, 0}};
+	t_list		planes		= {&plane, NULL, NULL, NULL};
+
+	t_vec3		cyl_orient ={4, 2, 0};
+	t_cylinder	cylinder	= {(t_vec3){3,3,2}, vec3_unit(cyl_orient), 2, 4, (t_color){255, 0, 0}};
+	t_cylinder	cylinder2	= {(t_vec3){-1,0,2}, vec3_unit(cyl_orient), 2, 4, (t_color){0, 0, 255}};
+	t_cylinder	cylinder3	= {(t_vec3){-3,-3,2}, vec3_unit(cyl_orient), 2, 4, (t_color){0, 255, 0}};
+	t_list		cylinders3	= {&cylinder3, NULL, NULL, NULL};
+	t_list		cylinders2	= {&cylinder2, NULL, &cylinders3, NULL};
+	t_list		cylinders	= {&cylinder, NULL, &cylinders2, NULL};
+	t_scene		scene = {0, &alight, &camera, &lights, &cylinders, &spheres, &planes, NULL, NULL};
+	// t_scene		scene = {0, &alight, &camera, &lights, &cylinders, NULL, NULL, NULL, NULL};
 
 	draw_scene(&scene);
 	return (ft_return(0));

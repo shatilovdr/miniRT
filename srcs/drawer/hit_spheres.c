@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:55:43 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/17 16:57:56 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/18 18:24:19 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,19 @@ void	hit_spheres(const t_list *spheres, t_ray *ray)
 
 static bool	hit_sphere(t_sphere *sphere, t_ray *ray, t_hp *hp)
 {
-	float	a;
-	float	b;
-	float	c;
-	float	discriminant;
-	t_vec3	sp_vec;
+	t_quadratic_equation	eq;
+	t_vec3					sp_vec;
 
 	sp_vec = vec3_sub(ray->origin, sphere->pos);
-	a = vec3_dot(ray->direction, ray->direction);
-	b = 2.0 * vec3_dot(sp_vec, ray->direction);
-	c = vec3_dot(sp_vec, sp_vec) - pow(sphere->diameter / 2, 2);
-	discriminant = b * b - 4 * a * c;
-	if (discriminant < 0)
+	eq.a = vec3_dot(ray->direction, ray->direction);
+	eq.b = vec3_dot(sp_vec, ray->direction) / eq.a;
+	eq.c = vec3_dot(sp_vec, sp_vec) - pow(sphere->diameter / 2, 2);
+	eq.discriminant = eq.b * eq.b - eq.c / eq.a;
+	if (eq.discriminant < 0)
 		return (false);
-	hp->dist = (-b - sqrt(discriminant)) / (2 * a);
+	hp->dist = -eq.b - sqrt(eq.discriminant);
 	if (hp->dist <= EPSILON)
-		hp->dist = (-b + sqrt(discriminant)) / (2 * a);
+		hp->dist = -eq.b + sqrt(eq.discriminant);
 	if (hp->dist <= EPSILON)
 		return (false);
 	hp->type = OBJ_SPH;

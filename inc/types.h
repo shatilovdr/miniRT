@@ -6,13 +6,14 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 18:25:43 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/05/29 12:04:32 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/19 14:44:40 by ivalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPES_H
 # define TYPES_H
 # include "libft.h"
+# include "MLX42.h"
 
 typedef struct s_amb_light	t_amb_light;
 typedef struct s_cylinder	t_cylinder;
@@ -77,6 +78,8 @@ struct s_sphere
 	const t_vec3		pos;
 	const long double	diameter;
 	const t_color		color;
+	const float			cbsize;
+	mlx_image_t			*texture;
 };
 
 struct s_plane
@@ -84,6 +87,8 @@ struct s_plane
 	const t_vec3	pos;
 	const t_vec3	normal;
 	const t_color	color;
+	const float		cbsize;
+	mlx_image_t		*texture;
 };
 
 struct s_cylinder
@@ -93,6 +98,8 @@ struct s_cylinder
 	const long double	diameter;
 	const long double	height;
 	const t_color		color;
+	const float			cbsize;
+	mlx_image_t			*texture;
 };
 
 #endif

@@ -6,7 +6,7 @@
 #    By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/27 17:31:32 by ivalimak          #+#    #+#              #
-#    Updated: 2024/05/29 12:37:38 by dshatilo         ###   ########.fr        #
+#    Updated: 2024/07/19 14:39:22 by ivalimak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ INCDIR	:=	inc
 LFTDIR	:=	libft
 MLXDIR	:=	MLX42
 
-INCLUDE	:=	-I$(INCDIR) -I$(LFTDIR)/$(INCDIR) -I$(MLXDIR)/include
+INCLUDE	:=	-I$(INCDIR) -I$(LFTDIR)/$(INCDIR) -I$(MLXDIR)/include/MLX42
 
 CC				:=	cc
 cflags.common	:=	-Wall -Wextra -Werror

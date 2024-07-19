@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 11:56:40 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/06/12 21:21:47 by ivalimak         ###   ########.fr       */
+/*   Updated: 2024/07/19 14:51:16 by ivalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,11 @@ static inline void		_dbg_pscene(t_scene *scene)
 		printf("%Lf,%Lf,%Lf\n", sph->pos.x, sph->pos.y, sph->pos.z);
 		printf("\t%20s %Lf\n", "diameter:", sph->diameter);
 		printf("\t%20s ", "color:");
-		printf("%u,%u,%u\n\n", sph->color.r, sph->color.g, sph->color.b);
+		printf("%u,%u,%u\n", sph->color.r, sph->color.g, sph->color.b);
+		if (sph->texture)
+			printf("\t%20s %p\n\n", "texture:", sph->texture);
+		else
+			printf("\t%20s %f\n\n", "CB size:", sph->cbsize);
 		scene->spheres = scene->spheres->next;
 	}
 	if (!scene->planes)
@@ -118,7 +122,11 @@ static inline void		_dbg_pscene(t_scene *scene)
 		printf("\t%20s ", "normal:");
 		printf("%Lf,%Lf,%Lf\n", pln->normal.x, pln->normal.y, pln->normal.z);
 		printf("\t%20s ", "color:");
-		printf("%u,%u,%u\n\n", pln->color.r, pln->color.g, pln->color.b);
+		printf("%u,%u,%u\n", pln->color.r, pln->color.g, pln->color.b);
+		if (pln->texture)
+			printf("\t%20s %p\n\n", "texture:", pln->texture);
+		else
+			printf("\t%20s %f\n\n", "CB size:", pln->cbsize);
 		scene->planes = scene->planes->next;
 	}
 	if (!scene->cylinders)
@@ -135,6 +143,10 @@ static inline void		_dbg_pscene(t_scene *scene)
 		printf("\t%20s %Lf\n", "height:", cyl->height);
 		printf("\t%20s ", "color:");
 		printf("%u,%u,%u\n", cyl->color.r, cyl->color.g, cyl->color.b);
+		if (cyl->texture)
+			printf("\t%20s %p\n", "texture:", cyl->texture);
+		else
+			printf("\t%20s %f\n", "CB size:", cyl->cbsize);
 		scene->cylinders = scene->cylinders->next;
 		if (scene->cylinders)
 			printf("\n");

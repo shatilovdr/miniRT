@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 18:25:02 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/05/29 13:17:03 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/19 17:35:20 by ivalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,10 @@ t_sphere	*parse_sph(const char *line, const t_scene *scene);
 t_plane		*parse_pln(const char *line, const t_scene *scene);
 
 // parse_utils.c
+mlx_image_t	*gettexture(const char **line);
 long double	getld(const char **line, const long double range[2]);
 uint8_t		getu8(const char **line, const uint8_t range[2]);
 t_color		*getcolor(const char **line, const uint8_t range[2]);
-t_vec3		*getvec3(const char **line, const long double range[2]);
+t_vec3		getvec3(const char **line, const long double range[2]);
 
 #endif

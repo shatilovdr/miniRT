@@ -6,17 +6,43 @@
 /*   By: ivalimak <ivalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:37:20 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/05/28 05:11:45 by ivalimak         ###   ########.fr       */
+/*   Updated: 2024/07/19 17:48:37 by ivalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "file.h"
+#include "ft_stdio/ft_printf.h"
+
+mlx_image_t	*gettexture(const char **line)
+{
+	static mlx_t	*mlx = NULL;
+	mlx_texture_t	*texture;
+	mlx_image_t		*out;
+
+	if (!mlx)
+		mlx = mlx_init(1920, 1080, "Fuck", true);
+	while (ft_isspace(**line))
+		(*line)++;
+	if (!**line)
+		return (NULL);
+	if (!ft_strequals(&(*line)[ft_max(ft_strlen(*line) - 4, 0)], ".png"))
+		ft_exit(rt_ferror("Unsupported image format"));
+	texture = mlx_load_png(*line);
+	if (!texture)
+		ft_exit(rt_ferror(mlx_strerror(mlx_errno)));
+	out = mlx_texture_to_image(mlx, texture);
+	if (!out)
+		ft_exit(rt_ferror(mlx_strerror(mlx_errno)));
+	return (out);
+}
 
 long double	getld(const char **line, const long double range[2])
 {
 	long double	out;
 	const char	*nbr;
 
+	if (!**line)
+		return (0.0);
 	while (ft_isspace(**line))
 		(*line)++;
 	if (!**line)
@@ -82,10 +108,10 @@ t_color	*getcolor(const char **line, const uint8_t range[2])
 	return (&out);
 }
 
-t_vec3	*getvec3(const char **line, const long double range[2])
+t_vec3	getvec3(const char **line, const long double range[2])
 {
-	static t_vec3	out;
-	const char		**vals;
+	t_vec3		out;
+	const char	**vals;
 
 	while (ft_isspace(**line))
 		(*line)++;
@@ -105,5 +131,5 @@ t_vec3	*getvec3(const char **line, const long double range[2])
 		ft_exit(rt_ferror("Value out of range"));
 	*line += ft_strlen(vals[0]) + ft_strlen(vals[1]) + ft_strlen(vals[2]) + 2;
 	ft_popblks(4, vals, vals[0], vals[1], vals[2]);
-	return (&out);
+	return (out);
 }

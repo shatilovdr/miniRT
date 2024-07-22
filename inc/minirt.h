@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:51:00 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/19 18:58:19 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/22 10:43:40 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ t_color		color_scale(t_color color, float scale);
 t_color		color_add(t_color a, t_color b);
 t_color		color_prod(t_color a, t_color b);
 uint32_t	color_to_int(t_color color);
+t_color		color_invert(t_color color);
 
 // add_lights.c
 t_color		add_lights(t_ray *ray, t_scene *scene, t_color obj_color);

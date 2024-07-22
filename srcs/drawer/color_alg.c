@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 08:39:38 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/06/27 09:38:50 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/22 10:43:20 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,14 @@ t_color	color_prod(t_color a, t_color b)
 	a.g = ((uint16_t)a.g * b.g) / 255;
 	a.b = ((uint16_t)a.b * b.b) / 255;
 	return (a);
+}
+
+t_color	color_invert(t_color color)
+{
+	t_color	res;
+
+	res.r = 255 - color.r;
+	res.g = 255 - color.g;
+	res.b = 255 - color.b;
+	return	(res);
 }

@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 11:56:40 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/20 22:13:23 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/22 14:20:53 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,19 +148,41 @@
 // // }
 
 
+int	init_mlx(t_scene *sc)
+{
+	sc->mlx = mlx_init(WIDTH, HEIGHT, "miniRT", true);
+	if (!sc->mlx)
+		return (1);
+	sc->img = mlx_new_image(sc->mlx, sc->mlx->width, sc->mlx->height);
+	if (!sc->img)
+	{
+		mlx_terminate(sc->mlx);
+		return (1);
+	}
+	return (0);
+}
+
 int32_t main(void)
 {
+	t_scene	sc;
+
+	init_mlx(&sc);
+	mlx_texture_t	*bmp;
+	bmp = mlx_load_png("/home/dshatilo/projects/github/10_miniRT/textures/smile.png");
+	mlx_image_t	*texture = mlx_texture_to_image(sc.mlx, bmp);
+	mlx_delete_texture(bmp);
+	
 	t_light		light		= {(t_vec3){5, 5, 0}, 0.5, (t_color){255, 255, 255}};
 	t_list		lights		= {&light, NULL, NULL, NULL};
 	t_amb_light	alight		= {0.3, (t_color){255, 255, 255}};
 	t_camera	camera		= {(t_vec3){0, 0, -10}, (t_vec3){0, 0, 1}, 100};
 
-	t_sphere	sphere		= {(t_vec3){-2,0,0}, 3.0f, (t_color){0, 255, 0}, 0.5, NULL};
+	t_sphere	sphere		= {(t_vec3){-2,0,0}, 3.0f, (t_color){0, 255, 0}, 0.5, texture};
 	t_sphere	sphere2		= {(t_vec3){1,0,0}, 1.0f, (t_color){255, 0, 0}, 0.123, NULL};
 	t_list		spheres2	= {&sphere2, NULL, NULL, NULL};
 	t_list		spheres		= {&sphere, NULL, &spheres2, NULL};
 
-	t_plane		plane		= {(t_vec3){0,0,10}, (t_vec3){0, 0, 1}, 0, 0, (t_color){0, 255, 0}, 2, NULL};
+	t_plane		plane		= {(t_vec3){0,0,-3}, (t_vec3){0, 0, 1}, 0, 0, (t_color){0, 255, 0}, 0, texture};
 	t_list		planes		= {&plane, NULL, NULL, NULL};
 
 	t_vec3		axis ={4, 2, 7};
@@ -180,7 +202,14 @@ int32_t main(void)
 	t_list		cones	= {&cone, NULL, &cones2, NULL};
 
 	// t_scene		scene = {0, &alight, &camera, &lights, NULL, NULL, NULL, &cones, NULL, NULL};
-	t_scene		scene = {0, &alight, &camera, &lights, &cylinders, &spheres, &planes, &cones, NULL, NULL};
-	draw_scene(&scene);
+	// sc = (t_scene){0, &alight, &camera, &lights, &cylinders, &spheres, &planes, &cones, NULL, NULL};
+	sc.amb = &alight;
+	sc.cam = &camera;
+	sc.lights = &lights;
+	sc.cylinders = &cylinders;
+	sc.spheres = &spheres;
+	sc.planes = &planes;
+	sc.cones = &cones;
+	draw_scene(&sc);
 	return (ft_return(0));
 }

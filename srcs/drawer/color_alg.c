@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 08:39:38 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/22 10:43:20 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/22 12:58:20 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,5 @@ t_color	color_invert(t_color color)
 	res.r = 255 - color.r;
 	res.g = 255 - color.g;
 	res.b = 255 - color.b;
-	return	(res);
+	return (res);
 }

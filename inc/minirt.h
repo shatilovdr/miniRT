@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:51:00 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/22 10:43:40 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/22 14:31:15 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,5 +121,8 @@ t_color		color_invert(t_color color);
 
 // add_lights.c
 t_color		add_lights(t_ray *ray, t_scene *scene, t_color obj_color);
+
+// get_texture_color.c
+t_color	get_texture_color(t_coord coord, const mlx_image_t *img);
 
 #endif

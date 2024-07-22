@@ -6,7 +6,7 @@
 /*   By: ivalimak <ivalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:22:30 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/07/22 16:57:27 by ivalimak         ###   ########.fr       */
+/*   Updated: 2024/07/22 22:41:26 by ivalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ t_plane	*parse_pln(const char *line)
 	ft_memcpy(&color, getcolor(&line, (uint8_t [2]){0, 255}), sizeof(color));
 	cbsize = _getcbsize(&line);
 	texture = gettexture(&line);
-	out = ft_memcpy(ft_push(ft_alloc(sizeof(*out))), 
+	out = ft_memcpy(ft_push(ft_alloc(sizeof(*out))),
 			&(t_plane){.pos = vecs[0], .normal = vecs[1], .color = color,
 			.cbsize = cbsize}, sizeof(*out));
 	if (!out)

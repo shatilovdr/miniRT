@@ -6,7 +6,7 @@
 /*   By: ivalimak <ivalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:37:20 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/07/22 16:45:32 by ivalimak         ###   ########.fr       */
+/*   Updated: 2024/07/22 22:40:50 by ivalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ mlx_image_t	*gettexture(const char **line)
 	mlx_image_t		*out;
 
 	if (!mlx)
-		mlx = mlx_init(1920, 1080, "Fuck", true);
+		mlx = mlx_init(1920, 1080, "miniRT", true);
 	while (ft_isspace(**line))
 		(*line)++;
 	if (!**line)
@@ -29,10 +29,12 @@ mlx_image_t	*gettexture(const char **line)
 		rt_exit(rt_ferror("Unsupported image format"));
 	texture = mlx_load_png(*line);
 	if (!texture)
-		rt_exit(rt_ferror(mlx_strerror(mlx_errno)));
+		rt_exit(rt_ferror(ft_push(ft_strnjoin(3,
+						*line, ": ", mlx_strerror(mlx_errno)))));
 	out = mlx_texture_to_image(mlx, texture);
 	if (!out)
-		rt_exit(rt_ferror(mlx_strerror(mlx_errno)));
+		rt_exit(rt_ferror(ft_push(ft_strnjoin(3,
+						*line, ": ", mlx_strerror(mlx_errno)))));
 	return (out);
 }
 

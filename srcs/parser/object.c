@@ -6,7 +6,7 @@
 /*   By: ivalimak <ivalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:22:30 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/07/19 17:53:19 by ivalimak         ###   ########.fr       */
+/*   Updated: 2024/07/22 16:57:27 by ivalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static inline float	_getcbsize(const char **line);
 
-t_cylinder	*parse_cyl(const char *line, const t_scene *scene)
+t_cylinder	*parse_cyl(const char *line)
 {
 	t_cylinder	*out;
 	t_vec3		vecs[2];
@@ -35,15 +35,12 @@ t_cylinder	*parse_cyl(const char *line, const t_scene *scene)
 			.height = dims[1], .color = color, .cbsize = (float)dims[2]},
 			sizeof(*out));
 	if (!out)
-	{
-		close(scene->fd);
-		ft_exit(rt_perror());
-	}
+		rt_exit(rt_perror());
 	out->texture = texture;
 	return (out);
 }
 
-t_sphere	*parse_sph(const char *line, const t_scene *scene)
+t_sphere	*parse_sph(const char *line)
 {
 	t_sphere	*out;
 	t_vec3		pos;
@@ -57,19 +54,17 @@ t_sphere	*parse_sph(const char *line, const t_scene *scene)
 	ft_memcpy(&color, getcolor(&line, (uint8_t [2]){0, 255}), sizeof(color));
 	dims[1] = _getcbsize(&line);
 	texture = gettexture(&line);
-	out = ft_memcpy(ft_push(ft_alloc(sizeof(*out))), &(t_sphere){.pos = pos,
-			.diameter = dims[0], .color = color, .cbsize = dims[1]},
+	out = ft_memcpy(ft_push(ft_alloc(sizeof(*out))),
+			&(t_sphere){.pos = pos, .diameter = dims[0], .color = color,
+			.cbsize = dims[1]},
 			sizeof(*out));
 	if (!out)
-	{
-		close(scene->fd);
-		ft_exit(rt_perror());
-	}
+		rt_exit(rt_perror());
 	out->texture = texture;
 	return (out);
 }
 
-t_plane	*parse_pln(const char *line, const t_scene *scene)
+t_plane	*parse_pln(const char *line)
 {
 	t_plane		*out;
 	float		cbsize;
@@ -83,13 +78,11 @@ t_plane	*parse_pln(const char *line, const t_scene *scene)
 	ft_memcpy(&color, getcolor(&line, (uint8_t [2]){0, 255}), sizeof(color));
 	cbsize = _getcbsize(&line);
 	texture = gettexture(&line);
-	out = ft_memcpy(ft_push(ft_alloc(sizeof(*out))), &(t_plane){.pos = vecs[0],
-			.normal = vecs[1], .color = color, .cbsize = cbsize}, sizeof(*out));
+	out = ft_memcpy(ft_push(ft_alloc(sizeof(*out))), 
+			&(t_plane){.pos = vecs[0], .normal = vecs[1], .color = color,
+			.cbsize = cbsize}, sizeof(*out));
 	if (!out)
-	{
-		close(scene->fd);
-		ft_exit(rt_perror());
-	}
+		rt_exit(rt_perror());
 	out->texture = texture;
 	return (out);
 }

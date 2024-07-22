@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 18:25:43 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/07/19 14:44:40 by ivalimak         ###   ########.fr       */
+/*   Updated: 2024/07/22 16:40:38 by ivalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef struct s_scene	t_scene;
 
 struct s_scene
 {
-	int32_t				fd;
 	const t_amb_light	*amb;
 	const t_camera		*cam;
 	const t_light		*light;

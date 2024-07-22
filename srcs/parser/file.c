@@ -6,7 +6,7 @@
 /*   By: ivalimak <ivalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 18:51:32 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/05/29 10:43:39 by ivalimak         ###   ########.fr       */
+/*   Updated: 2024/07/22 16:58:12 by ivalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,39 +24,41 @@ t_scene	*parsefile(const char *path)
 	out = ft_push(ft_calloc(1, sizeof(*out)));
 	if (!out)
 		ft_exit(rt_perror());
-	out->fd = open(path, O_RDONLY);
-	if (out->fd == -1)
+	if (openscene(path) == -1)
 		ft_exit(rt_perror());
-	line = ft_push(ft_strtrim(get_next_line(out->fd), "\t\n\v\f\r "));
+	line = ft_push(ft_strtrim(get_next_line(getscene()), "\t\n\v\f\r "));
 	while (line)
 	{
 		if (!_checktype(out, line))
-		{
-			close(out->fd);
-			ft_exit(rt_ferror("Unrecognized element"));
-		}
+			rt_exit(rt_ferror("Unrecognized element"));
 		ft_popblk(line);
-		line = ft_push(ft_strtrim(get_next_line(out->fd), "\t\n\v\f\r "));
+		line = ft_push(ft_strtrim(get_next_line(getscene()), "\t\n\v\f\r "));
 	}
-	close(out->fd);
+	closescene();
 	return (out);
+}
+
+void	rt_exit(const int32_t estat)
+{
+	closescene();
+	ft_exit(estat);
 }
 
 static inline uint8_t	_checktype(t_scene *scene, const char *line)
 {
 	if (*line == 'A' && !scene->amb)
 	{
-		scene->amb = parse_alight(line, scene);
+		scene->amb = parse_alight(line);
 		return (scene->amb != NULL);
 	}
 	if (*line == 'C' && !scene->cam)
 	{
-		scene->cam = parse_camera(line, scene);
+		scene->cam = parse_camera(line);
 		return (scene->cam != NULL);
 	}
 	if (*line == 'L' && !scene->light)
 	{
-		scene->light = parse_light(line, scene);
+		scene->light = parse_light(line);
 		return (scene->light != NULL);
 	}
 	if (ft_strncmp(line, "sp", 2) == 0)
@@ -78,17 +80,17 @@ static inline uint8_t	_getobj(t_scene *scene, const char *line, uint8_t type)
 	obj = NULL;
 	if (type == OBJ_SPH)
 	{
-		obj = parse_sph(line, scene);
+		obj = parse_sph(line);
 		list = &scene->spheres;
 	}
 	else if (type == OBJ_PLN)
 	{
-		obj = parse_pln(line, scene);
+		obj = parse_pln(line);
 		list = &scene->planes;
 	}
 	else if (type == OBJ_CYL)
 	{
-		obj = parse_cyl(line, scene);
+		obj = parse_cyl(line);
 		list = &scene->cylinders;
 	}
 	if (!obj)

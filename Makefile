@@ -6,7 +6,7 @@
 #    By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/27 17:31:32 by ivalimak          #+#    #+#              #
-#    Updated: 2024/07/19 14:39:22 by ivalimak         ###   ########.fr        #
+#    Updated: 2024/07/22 16:59:07 by ivalimak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ PARSER_NAME		:=	element.c \
 					error.c \
 					file.c \
 					object.c \
+					file_utils.c \
 					parse_utils.c
 PARSER_PATH		:=	parser
 PARSER			:=	$(addprefix $(PARSER_PATH)/, $(PARSER_NAME))

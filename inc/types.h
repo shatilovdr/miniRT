@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 18:25:43 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/07/19 18:42:07 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/19 23:57:39 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,19 @@ struct s_sphere
 	const t_vec3		pos;
 	const float			diameter;
 	const t_color		color;
+	const float			checker_size;
+	const mlx_image_t	*texture;
 };
 
 struct s_plane
 {
-	const t_vec3	pos;
-	const t_vec3	normal;
-	const t_color	color;
+	const t_vec3		pos;
+	const t_vec3		normal;
+	const float			dummy1;
+	const float			dummy2;
+	const t_color		color;
+	const float			checker_size;
+	const mlx_image_t	*texture;
 };
 
 struct s_conic
@@ -98,6 +104,8 @@ struct s_conic
 	const float			diameter;
 	const float			height;
 	const t_color		color;
+	const float			checker_size;
+	const mlx_image_t	*texture;
 };
 
 struct s_transform

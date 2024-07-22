@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 12:44:38 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/19 18:20:21 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/20 10:04:01 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	hit_base(t_conic *c, t_ray *ray, t_hp *hp, t_vec3 shift)
 {
-	const t_plane	plane = {vec3_add(c->pos, shift), c->axis, (t_color){0}};
+	const t_plane	plane = {vec3_add(c->pos, shift), c->axis,
+		0, 0, (t_color){0}, 0, NULL};
 
 	if (hit_plane(&plane, ray, hp) == true
 		&& vec3_distance(hp->pos, plane.pos) <= c->diameter / 2)

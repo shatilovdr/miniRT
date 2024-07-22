@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 14:25:08 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/19 18:57:15 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/19 23:26:15 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,14 @@ static bool	hit_cone(t_conic *cone, t_ray *ray, t_hp *hp)
 {
 	t_hp	base;
 	t_hp	curved_surface;
-	t_hp	*temp;
 
 	hit_base(cone, ray, &base,
 		vec3_scale(cone->axis, cone->height));
 	hit_curved_surface_cone(cone, ray, &curved_surface);
-	temp = select_closest_hp(&base, &curved_surface);
-	if (temp->type == OBJ_NONE)
+	*hp = *select_closest_hp(&base, &curved_surface);
+	if (hp->type == OBJ_NONE)
 		return (false);
-	temp->obj = cone;
-	*hp = *temp;
+	hp->obj = cone;
 	return (true);
 }
 

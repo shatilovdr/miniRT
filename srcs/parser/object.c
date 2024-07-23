@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   object.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivalimak <ivalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:22:30 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/05/29 10:44:58 by ivalimak         ###   ########.fr       */
+/*   Updated: 2024/06/24 21:25:35 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "file.h"
+#include "minirt.h"
 
 t_cylinder	*parse_cyl(const char *line, const t_scene *scene)
 {

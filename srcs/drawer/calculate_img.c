@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   calculate_img.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 18:57:28 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/06/24 21:25:54 by dshatilo         ###   ########.fr       */
+/*   Created: 2024/06/24 23:33:33 by dshatilo          #+#    #+#             */
+/*   Updated: 2024/06/28 11:29:12 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include "ft_stdio/ft_printf.h"
 
-int32_t	rt_perror(void)
+void	calculate_img(t_scene *scene)
 {
-	const int32_t	err = errno;
-	const char		*msg;
+	int			x;
+	int			y;
+	t_transform	transform;
+	t_ray		ray;
+	uint32_t	color;
 
-	msg = ft_push(ft_strlower(ft_strdup(strerror(err))));
-	if (!msg || !*msg)
-		msg = strerror(err);
-	ft_dprintf(2, "miniRT: %s\n", msg);
-	return (err);
-}
-
-int32_t	rt_ferror(const char *err)
-{
-	ft_dprintf(2, "Error\n");
-	ft_dprintf(2, "%s\n", err);
-	return (1);
+	transform = init_transform(scene);
+	ray.origin = scene->cam->pos;
+	y = -1;
+	while (++y < HEIGHT)
+	{
+		x = -1;
+		while (++x < WIDTH)
+		{
+			ray.direction = get_ray_direction(scene, &transform, x, y);
+			hit_objects(scene, &ray);
+			color = get_color(scene, &ray);
+			mlx_put_pixel(scene->img, x, y, color);
+		}
+	}
 }

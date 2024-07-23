@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_error.h                                         :+:      :+:    :+:   */
+/*   hit_objects.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 18:56:30 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/05/29 13:16:57 by dshatilo         ###   ########.fr       */
+/*   Created: 2024/05/31 14:13:45 by dshatilo          #+#    #+#             */
+/*   Updated: 2024/07/19 15:21:59 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RT_ERROR_H
-# define RT_ERROR_H
-# include "minirt.h"
-# include <errno.h>
-# include <string.h>
+#include "minirt.h"
 
-// error.c
-int32_t	rt_perror(void);
-int32_t	rt_ferror(const char *err);
-
-#endif
+void	hit_objects(t_scene *scene, t_ray *ray)
+{
+	ray->hp.type = OBJ_NONE;
+	hit_spheres(scene->spheres, ray);
+	hit_planes(scene->planes, ray);
+	hit_cylinders(scene->cylinders, ray);
+	hit_cones(scene->cones, ray);
+}

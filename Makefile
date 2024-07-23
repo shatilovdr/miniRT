@@ -49,6 +49,7 @@ DRAWER_NAME	:=	draw_scene.c \
 				hit_cones.c \
 				get_color.c \
 				color_alg.c \
+				get_texture_color.c \
 				add_lights.c
 DRAWER_PATH	:=	drawer
 DRAWER			:=	$(addprefix $(DRAWER_PATH)/, $(DRAWER_NAME))

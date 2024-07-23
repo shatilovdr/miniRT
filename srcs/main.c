@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 11:56:40 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/22 14:20:53 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/23 09:29:25 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,22 +167,23 @@ int32_t main(void)
 	t_scene	sc;
 
 	init_mlx(&sc);
-	mlx_texture_t	*bmp;
-	bmp = mlx_load_png("/home/dshatilo/projects/github/10_miniRT/textures/smile.png");
-	mlx_image_t	*texture = mlx_texture_to_image(sc.mlx, bmp);
-	mlx_delete_texture(bmp);
+	
+	// mlx_texture_t	*bmp;
+	// bmp = mlx_load_png("/home/dshatilo/projects/github/10_miniRT/textures/smile.png");
+	// mlx_image_t	*texture = mlx_texture_to_image(sc.mlx, bmp);
+	// mlx_delete_texture(bmp);
 	
 	t_light		light		= {(t_vec3){5, 5, 0}, 0.5, (t_color){255, 255, 255}};
 	t_list		lights		= {&light, NULL, NULL, NULL};
 	t_amb_light	alight		= {0.3, (t_color){255, 255, 255}};
 	t_camera	camera		= {(t_vec3){0, 0, -10}, (t_vec3){0, 0, 1}, 100};
 
-	t_sphere	sphere		= {(t_vec3){-2,0,0}, 3.0f, (t_color){0, 255, 0}, 0.5, texture};
+	t_sphere	sphere		= {(t_vec3){-2,0,0}, 3.0f, (t_color){0, 255, 0}, 0.5, NULL};
 	t_sphere	sphere2		= {(t_vec3){1,0,0}, 1.0f, (t_color){255, 0, 0}, 0.123, NULL};
 	t_list		spheres2	= {&sphere2, NULL, NULL, NULL};
 	t_list		spheres		= {&sphere, NULL, &spheres2, NULL};
 
-	t_plane		plane		= {(t_vec3){0,0,-3}, (t_vec3){0, 0, 1}, 0, 0, (t_color){0, 255, 0}, 0, texture};
+	t_plane		plane		= {(t_vec3){0,0,10}, (t_vec3){0, 0, 1}, 0, 0, (t_color){0, 255, 0}, 0, NULL};
 	t_list		planes		= {&plane, NULL, NULL, NULL};
 
 	t_vec3		axis ={4, 2, 7};

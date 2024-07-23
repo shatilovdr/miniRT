@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 08:39:38 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/22 12:58:20 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/23 09:23:10 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 
 t_color	color_scale(t_color color, float scale)
 {
+	if (scale > 1)
+		scale = 1;
+	if (scale < 0)
+		scale = 0;
 	color.r = color.r * scale;
 	color.g = color.g * scale;
 	color.b = color.b * scale;

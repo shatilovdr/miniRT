@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:33:33 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/06/28 11:29:12 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:35:59 by ivalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	calculate_img(t_scene *scene)
 	t_ray		ray;
 	uint32_t	color;
 
+	ft_memset(&transform, 0, sizeof(transform));
+	ft_memset(&ray, 0, sizeof(ray));
 	transform = init_transform(scene);
 	ray.origin = scene->cam->pos;
 	y = -1;

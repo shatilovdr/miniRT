@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 21:19:26 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/19 12:55:11 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:38:44 by ivalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ bool	is_in_shadow(t_light *light, t_ray *ray, t_scene *scene)
 {
 	t_ray	light_ray;
 
+	ft_memset(&light_ray, 0, sizeof(light_ray));
 	light_ray.direction = vec3_unit(vec3_sub(ray->hp.pos, light->pos));
 	light_ray.origin = light->pos;
 	hit_objects(scene, &light_ray);

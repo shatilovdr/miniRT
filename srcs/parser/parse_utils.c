@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:37:20 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/07/23 17:20:31 by ivalimak         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:28:24 by ivalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ mlx_image_t	*gettexture(const char **line)
 		rt_exit(rt_ferror(ft_push(ft_strnjoin(3,
 						*line, ": ", mlx_strerror(mlx_errno)))));
 	out = mlx_texture_to_image(getmlx(), texture);
+	mlx_delete_texture(texture);
 	if (!out)
 		rt_exit(rt_ferror(ft_push(ft_strnjoin(3,
 						*line, ": ", mlx_strerror(mlx_errno)))));

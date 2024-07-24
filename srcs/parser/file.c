@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 18:51:32 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/07/24 14:08:02 by ivalimak         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:47:00 by ivalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,11 @@ static inline t_list	**_getlist(const t_scene *scene, const uint8_t type);
 t_scene	*parsefile(const char *path)
 {
 	char	*line;
-	t_scene		*out;
-	size_t		i;
+	t_scene	*out;
+	size_t	i;
 
 	out = ft_push(ft_calloc(1, sizeof(*out)));
-	if (!out || !init_mlx(out))
-		ft_exit(rt_perror());
-	if (openscene(path) == -1)
+	if (!out || !init_mlx(out) || openscene(path) == -1)
 		ft_exit(rt_perror());
 	line = ft_push(ft_strtrim(get_next_line(getscene()), "\t\n\v\f\r "));
 	while (line)

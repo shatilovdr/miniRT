@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:22:30 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/07/23 14:40:11 by ivalimak         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:46:34 by ivalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static inline float	_getcbsize(const char **line);
 
 t_conic	*parse_con(const char *line)
 {
-	t_conic	*out;
+	t_conic		*out;
 	t_vec3		vecs[2];
 	long double	dims[3];
 	mlx_image_t	*texture;
@@ -31,9 +31,9 @@ t_conic	*parse_con(const char *line)
 	dims[2] = _getcbsize(&line);
 	texture = gettexture(&line);
 	out = ft_memcpy(ft_push(ft_alloc(sizeof(*out))),
-			&(t_conic){.pos = vecs[0], .axis = vecs[1], .diameter = dims[0],
-			.height = dims[1], .color = color, .checker_size = (float)dims[2]},
-			sizeof(*out));
+			&(t_conic){.pos = vecs[0], .axis = vec3_unit(vecs[1]),
+			.diameter = dims[0], .height = dims[1], .color = color,
+			.checker_size = (float)dims[2]}, sizeof(*out));
 	if (!out)
 		rt_exit(rt_perror());
 	out->texture = texture;

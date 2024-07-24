@@ -6,7 +6,7 @@
 #    By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/27 17:31:32 by ivalimak          #+#    #+#              #
-#    Updated: 2024/07/22 16:59:07 by ivalimak         ###   ########.fr        #
+#    Updated: 2024/07/23 14:51:58 by ivalimak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,9 +33,8 @@ CFLAGS			:=	$(cflags.common) $(cflags.$(BUILD)) $(cflags.extra) $(INCLUDE)
 ifeq ($(shell uname),Linux)
 	LDFLAGS	:=	-L$(LFTDIR) -L$(MLXDIR)/build -lft -lmlx42 -ldl -lglfw -pthread -lm
 else
-	LDFLAGS	:=	-L$(LFTDIR) -L$(MLXDIR)/build -L"/Users/$(USER)/.brew/opt/glfw/lib" -lft -lmlx42 -lglfw -framework Cocoa -framework OpenGL -framework IOKit
-endif
-
+	LDFLAGS	:=	-L$(LFTDIR) -L$(MLXDIR)/build -L"/opt/homebrew/Cellar/glfw/3.3.9/lib/" -lft -lmlx42 -lglfw -framework Cocoa -framework OpenGL -framework IOKit
+	endif
 
 PARSER_NAME		:=	element.c \
 					error.c \
@@ -47,17 +46,37 @@ PARSER_PATH		:=	parser
 PARSER			:=	$(addprefix $(PARSER_PATH)/, $(PARSER_NAME))
 
 LIN_ALG_NAME	:=	vec3_operations.c \
-					vec3_operations2.c \
-					vec3_multiplication.c \
-					vec3_rotation.c
+					vec3_operations2.c
 LIN_ALG_PATH	:=	lin_alg
 LIN_ALG			:=	$(addprefix $(LIN_ALG_PATH)/, $(LIN_ALG_NAME))
 
-SRCS	:=	$(addprefix $(SRCDIR)/, main.c) $(addprefix $(SRCDIR)/, $(PARSER)) $(addprefix $(SRCDIR)/, $(LIN_ALG))
-OBJS	:=	$(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
+DRAWER_NAME	:=	draw_scene.c \
+				calculate_img.c \
+				init_transform.c \
+				get_ray_direction.c \
+				hit_objects.c \
+				hit_spheres.c \
+				hit_planes.c \
+				hit_conics.c \
+				hit_cylinders.c \
+				hit_cones.c \
+				get_color.c \
+				color_alg.c \
+				get_texture_color.c \
+				add_lights.c
+DRAWER_PATH	:=	drawer
+DRAWER			:=	$(addprefix $(DRAWER_PATH)/, $(DRAWER_NAME))
 
-LFT		:=	$(LFTDIR)/libft.a
-MLX42	:=	$(MLXDIR)/build/libmlx42.a
+SRCS			:=	$(addprefix $(SRCDIR)/, main.c) \
+					$(addprefix $(SRCDIR)/, utils.c) \
+					$(addprefix $(SRCDIR)/, $(LIN_ALG)) \
+					$(addprefix $(SRCDIR)/, $(DRAWER)) \
+					$(addprefix $(SRCDIR)/, $(PARSER))
+
+OBJS			:=	$(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
+
+LFT				:=	$(LFTDIR)/libft.a
+MLX42			:=	$(MLXDIR)/build/libmlx42.a
 
 all: $(NAME)
 
@@ -76,6 +95,7 @@ $(OBJDIR):
 	@printf "\e[32;1mMINIRT >\e[m Creating objdir\n"
 	@mkdir -p $(OBJDIR)/$(PARSER_PATH)
 	@mkdir -p $(OBJDIR)/$(LIN_ALG_PATH)
+	@mkdir -p $(OBJDIR)/$(DRAWER_PATH)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@printf "\e[32;1mMINIRT >\e[m Compiling %s\n" $@

@@ -6,21 +6,11 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 09:56:19 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/05/29 12:47:09 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/18 14:57:32 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lin_alg.h"
-
-t_vec3	vec3(double x, double y, double z)
-{
-	t_vec3	vec3or;
-
-	vec3or.x = x;
-	vec3or.y = y;
-	vec3or.z = z;
-	return (vec3or);
-}
+#include "minirt.h"
 
 t_vec3	vec3_add(t_vec3 a, t_vec3 b)
 {
@@ -42,17 +32,7 @@ t_vec3	vec3_sub(t_vec3 a, t_vec3 b)
 	return (diff);
 }
 
-t_vec3	vec3_prod(t_vec3 a, t_vec3 b)
-{
-	t_vec3	prod;
-
-	prod.x = a.x * b.x;
-	prod.y = a.y * b.y;
-	prod.z = a.z * b.z;
-	return (prod);
-}
-
-t_vec3	vec3_scale(double coef, t_vec3 v)
+t_vec3	vec3_scale(t_vec3 v, float coef)
 {
 	t_vec3	new;
 
@@ -60,4 +40,14 @@ t_vec3	vec3_scale(double coef, t_vec3 v)
 	new.y = coef * v.y;
 	new.z = coef * v.z;
 	return (new);
+}
+
+float	vec3_dot(t_vec3 a, t_vec3 b)
+{
+	return (a.x * b.x + a.y * b.y + a.z * b.z);
+}
+
+float	vec3_dot2(t_vec3 a)
+{
+	return (vec3_dot(a, a));
 }

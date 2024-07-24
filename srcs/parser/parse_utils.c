@@ -3,24 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivalimak <ivalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:37:20 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/07/22 22:40:50 by ivalimak         ###   ########.fr       */
+/*   Updated: 2024/07/23 17:20:31 by ivalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "file.h"
-#include "ft_stdio/ft_printf.h"
+#include "minirt.h"
 
 mlx_image_t	*gettexture(const char **line)
 {
-	static mlx_t	*mlx = NULL;
 	mlx_texture_t	*texture;
 	mlx_image_t		*out;
 
-	if (!mlx)
-		mlx = mlx_init(1920, 1080, "miniRT", true);
 	while (ft_isspace(**line))
 		(*line)++;
 	if (!**line)
@@ -31,7 +27,7 @@ mlx_image_t	*gettexture(const char **line)
 	if (!texture)
 		rt_exit(rt_ferror(ft_push(ft_strnjoin(3,
 						*line, ": ", mlx_strerror(mlx_errno)))));
-	out = mlx_texture_to_image(mlx, texture);
+	out = mlx_texture_to_image(getmlx(), texture);
 	if (!out)
 		rt_exit(rt_ferror(ft_push(ft_strnjoin(3,
 						*line, ": ", mlx_strerror(mlx_errno)))));
@@ -54,7 +50,7 @@ long double	getld(const char **line, const long double range[2])
 		rt_exit(rt_perror());
 	if (!ft_isfloat(nbr))
 		rt_exit(rt_ferror("Invalid value"));
-	out = ft_atof80(nbr);
+	out = ft_atof32(nbr);
 	if (out < range[0] || out > range[1])
 		rt_exit(rt_ferror("Value out of range"));
 	*line += ft_strlen(nbr);
@@ -100,6 +96,7 @@ t_color	*getcolor(const char **line, const uint8_t range[2])
 	if (ft_getblksize(vals) / 4 != sizeof(*vals) || !ft_isuint(vals[0], 1)
 		|| !ft_isuint(vals[1], 1) || !ft_isuint(vals[2], 1))
 		rt_exit(rt_ferror("Invalid value"));
+	ft_memset(&out, 0, sizeof(out));
 	ft_memcpy(&out, &(t_color){.r = ft_atou8(vals[0]),
 		.g = ft_atou8(vals[1]), .b = ft_atou8(vals[2])}, sizeof(out));
 	if (out.r < range[0] || out.r > range[1] || out.g < range[0]
@@ -126,8 +123,9 @@ t_vec3	getvec3(const char **line, const long double range[2])
 	if (ft_getblksize(vals) / 4 != sizeof(*vals) || !ft_isfloat(vals[0])
 		|| !ft_isfloat(vals[1]) || !ft_isfloat(vals[2]))
 		rt_exit(rt_ferror("Invalid value"));
-	ft_memcpy(&out, &(t_vec3){.x = ft_atof80(vals[0]),
-		.y = ft_atof80(vals[1]), .z = ft_atof80(vals[2])}, sizeof(out));
+	out.x = ft_atof32(vals[0]);
+	out.y = ft_atof32(vals[1]);
+	out.z = ft_atof32(vals[2]);
 	if (out.x < range[0] || out.x > range[1] || out.y < range[0]
 		|| out.y > range[1] || out.z < range[0] || out.z > range[1])
 		rt_exit(rt_ferror("Value out of range"));

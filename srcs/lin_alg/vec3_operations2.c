@@ -5,22 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 12:20:51 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/05/29 12:48:08 by dshatilo         ###   ########.fr       */
+/*   Created: 2024/05/27 10:17:57 by dshatilo          #+#    #+#             */
+/*   Updated: 2024/07/18 14:57:39 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lin_alg.h"
+#include "minirt.h"
 
-double	vec3_norm(t_vec3 vect)
+float	vec3_norm(t_vec3 vect)
 {
-	return (sqrt(dot2(vect)));
+	return (sqrt(vec3_dot(vect, vect)));
 }
 
 t_vec3	vec3_unit(t_vec3 vect)
 {
 	t_vec3	unit;
-	double	norm;
+	float	norm;
 
 	norm = vec3_norm(vect);
 	unit.x = vect.x / norm;
@@ -29,20 +29,31 @@ t_vec3	vec3_unit(t_vec3 vect)
 	return (unit);
 }
 
-double	vec3_cos(t_vec3 a, t_vec3 b)
+t_vec3	vec3_cross(t_vec3 a, t_vec3 b)
 {
-	return (dot(a, b) / (vec3_norm(a) * vec3_norm(b)));
+	t_vec3	cp;
+
+	cp.x = a.y * b.z - a.z * b.y;
+	cp.y = a.z * b.x - a.x * b.z;
+	cp.z = a.x * b.y - a.y * b.x;
+	return (cp);
 }
 
-double	vec3_sin(t_vec3 a, t_vec3 b)
+bool	vec3_equals(t_vec3 *a, t_vec3 *b)
 {
-	return (sqrt(1 - pow(vec3_cos(a, b), 2)));
+	if (fabs(a->x - b->x) > 0.001)
+		return (false);
+	if (fabs(a->y - b->y) > 0.001)
+		return (false);
+	if (fabs(a->z - b->z) > 0.001)
+		return (false);
+	return (true);
 }
 
-double	distance(t_vec3 v1, t_vec3 v2)
+float	vec3_distance(t_vec3 a, t_vec3 b)
 {
-	double	d;
+	float	d;
 
-	d = sqrt(pow(v2.x - v1.x, 2) + pow(v2.y - v1.y, 2) + pow(v2.z - v1.z, 2));
+	d = sqrt(pow(b.x - a.x, 2) + pow(b.y - a.y, 2) + pow(b.z - a.z, 2));
 	return (d);
 }

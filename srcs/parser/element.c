@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   element.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivalimak <ivalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:43:04 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/07/22 22:41:17 by ivalimak         ###   ########.fr       */
+/*   Updated: 2024/07/23 14:30:36 by ivalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "file.h"
+#include "minirt.h"
 
 t_amb_light	*parse_alight(const char *line)
 {

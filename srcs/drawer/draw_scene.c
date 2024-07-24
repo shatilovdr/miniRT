@@ -6,13 +6,12 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:00:32 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/22 14:32:01 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:09:28 by ivalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int		init_mlx(t_scene *scene);
 void	track_esc(mlx_key_data_t keydata, void *param);
 
 int	draw_scene(t_scene *scene)

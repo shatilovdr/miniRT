@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 18:25:02 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/07/23 15:08:36 by ivalimak         ###   ########.fr       */
+/*   Updated: 2024/07/24 13:59:34 by ivalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 # define OBJ_LGT 0
 # define OBJ_SPH 1
 # define OBJ_PLN 2
-# define OBJ_CON 3
+# define OBJ_CYL 3
+# define OBJ_CON 4
 
 # define POS_MAX 42000.0
 # define POS_MIN -42000.0

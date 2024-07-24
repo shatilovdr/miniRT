@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:51:00 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/23 15:08:31 by ivalimak         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:00:48 by ivalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 void		rt_exit(const int32_t estat);
 
 // utils.c
+uint8_t		init_mlx(t_scene *sc);
 mlx_t		*getmlx(void);
 
 // vec3_operations.c

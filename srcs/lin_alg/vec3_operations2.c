@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 10:17:57 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/18 14:57:39 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/24 22:56:25 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ t_vec3	vec3_cross(t_vec3 a, t_vec3 b)
 
 bool	vec3_equals(t_vec3 *a, t_vec3 *b)
 {
-	if (fabs(a->x - b->x) > 0.001)
+	if (fabs(a->x - b->x) > 0.005)
 		return (false);
-	if (fabs(a->y - b->y) > 0.001)
+	if (fabs(a->y - b->y) > 0.005)
 		return (false);
-	if (fabs(a->z - b->z) > 0.001)
+	if (fabs(a->z - b->z) > 0.005)
 		return (false);
 	return (true);
 }

@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/05/27 17:31:32 by ivalimak          #+#    #+#              #
+#    Updated: 2024/07/23 14:51:58 by ivalimak         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME	:=	miniRT
 
 BUILD	:=	normal
@@ -8,7 +20,7 @@ INCDIR	:=	inc
 LFTDIR	:=	libft
 MLXDIR	:=	MLX42
 
-INCLUDE	:=	-I$(INCDIR) -I$(LFTDIR)/$(INCDIR) -I$(MLXDIR)/include
+INCLUDE	:=	-I$(INCDIR) -I$(LFTDIR)/$(INCDIR) -I$(MLXDIR)/include/MLX42
 
 CC				:=	cc
 cflags.common	:=	-Wall -Wextra -Werror
@@ -28,6 +40,7 @@ PARSER_NAME		:=	element.c \
 					error.c \
 					file.c \
 					object.c \
+					file_utils.c \
 					parse_utils.c
 PARSER_PATH		:=	parser
 PARSER			:=	$(addprefix $(PARSER_PATH)/, $(PARSER_NAME))
@@ -55,9 +68,10 @@ DRAWER_PATH	:=	drawer
 DRAWER			:=	$(addprefix $(DRAWER_PATH)/, $(DRAWER_NAME))
 
 SRCS			:=	$(addprefix $(SRCDIR)/, main.c) \
+					$(addprefix $(SRCDIR)/, utils.c) \
 					$(addprefix $(SRCDIR)/, $(LIN_ALG)) \
-					$(addprefix $(SRCDIR)/, $(DRAWER))
-#					$(addprefix $(SRCDIR)/, $(PARSER)) \
+					$(addprefix $(SRCDIR)/, $(DRAWER)) \
+					$(addprefix $(SRCDIR)/, $(PARSER))
 
 OBJS			:=	$(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
 

@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 12:44:38 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/20 10:04:01 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/23 14:34:47 by ivalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	hit_base(t_conic *c, t_ray *ray, t_hp *hp, t_vec3 shift)
 	if (hit_plane(&plane, ray, hp) == true
 		&& vec3_distance(hp->pos, plane.pos) <= c->diameter / 2)
 	{
-		hp->type = OBJ_CONIC;
+		hp->type = OBJ_CON;
 		hp->surf_type = BASE;
 	}
 	else
@@ -55,14 +55,14 @@ void	check_conic_intersection(
 		hp1.pos = vec3_add(ray->origin, vec3_scale(ray->direction, hp1.dist));
 		height = vec3_dot(vec3_sub(hp1.pos, conic->pos), conic->axis);
 		if (height > -0.001f && height <= conic->height)
-			hp1.type = OBJ_CONIC;
+			hp1.type = OBJ_CON;
 	}
 	if (hp2.dist >= EPSILON)
 	{
 		hp2.pos = vec3_add(ray->origin, vec3_scale(ray->direction, hp2.dist));
 		height = vec3_dot(vec3_sub(hp2.pos, conic->pos), conic->axis);
 		if (height > -0.001f && height <= conic->height)
-			hp2.type = OBJ_CONIC;
+			hp2.type = OBJ_CON;
 	}
 	*hp = *select_closest_hp(&hp1, &hp2);
 }

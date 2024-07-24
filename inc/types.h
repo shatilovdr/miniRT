@@ -6,14 +6,14 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 18:25:43 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/07/22 13:02:30 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/23 14:22:22 by ivalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPES_H
 # define TYPES_H
 # include "libft.h"
-# include "MLX42/MLX42.h"
+# include "MLX42.h"
 
 typedef struct s_amb_light	t_amb_light;
 typedef struct s_conic		t_conic;
@@ -32,7 +32,6 @@ typedef struct s_scene		t_scene;
 
 struct s_scene
 {
-	int32_t				fd;
 	const t_amb_light	*amb;
 	const t_camera		*cam;
 	const t_list		*lights;

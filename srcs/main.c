@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 11:56:40 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/24 13:47:11 by ivalimak         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:15:15 by ivalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@ int32_t	main(int32_t argc, char **argv)
 		ft_dprintf(2, "miniRT: usage: miniRT [scene file]\n");
 		return (ft_return(1));
 	}
-	if (!scene->lights || !scene->cam)
+	if (!scene->amb || !scene->lights || !scene->cam)
 	{
+		if (!scene->amb)
+			ft_dprintf(2, "miniRT: no ambient light found in scene file\n");
 		if (!scene->lights)
 			ft_dprintf(2, "miniRT: no light found in scene file\n");
 		if (!scene->cam)
@@ -40,6 +42,7 @@ int32_t	main(int32_t argc, char **argv)
 void	rt_exit(const int32_t estat)
 {
 	closescene();
+	mlx_terminate(getmlx());
 	ft_exit(estat);
 }
 

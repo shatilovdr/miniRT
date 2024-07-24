@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:00:32 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/24 14:09:28 by ivalimak         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:14:26 by ivalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	draw_scene(t_scene *scene)
 	mlx_image_to_window(scene->mlx, scene->img, 0, 0);
 	mlx_key_hook(scene->mlx, track_esc, scene->mlx);
 	mlx_loop(scene->mlx);
-	mlx_terminate(scene->mlx);
 	return (0);
 }
 

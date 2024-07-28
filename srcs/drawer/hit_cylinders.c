@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:55:43 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/19 18:57:05 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/29 15:02:35 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static void	solve_quad_eq_cylinder(
 	eq->a = vec3_dot2(vec3_cross(ray->direction, cylinder->axis));
 	eq->b = (vec3_dot(vec, ray->direction) - vec3_dot(cylinder->axis, vec)
 			* vec3_dot(cylinder->axis, ray->direction)) / eq->a;
-	eq->c = vec3_dot2(vec) - pow(vec3_dot(cylinder->axis, vec), 2)
-		- pow(cylinder->diameter / 2, 2);
+	eq->c = vec3_dot2(vec) - powf(vec3_dot(cylinder->axis, vec), 2)
+		- powf(cylinder->diameter / 2, 2);
 	eq->discriminant = eq->b * eq->b - eq->c / eq->a;
 }

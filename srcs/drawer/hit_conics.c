@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 12:44:38 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/23 14:34:47 by ivalimak         ###   ########.fr       */
+/*   Updated: 2024/07/29 15:03:38 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	check_conic_intersection(
 
 	hp1.type = OBJ_NONE;
 	hp2.type = OBJ_NONE;
-	hp1.dist = -eq->b - sqrt(eq->discriminant);
-	hp2.dist = -eq->b + sqrt(eq->discriminant);
+	hp1.dist = -eq->b - sqrtf(eq->discriminant);
+	hp2.dist = -eq->b + sqrtf(eq->discriminant);
 	if (hp1.dist >= EPSILON)
 	{
 		hp1.pos = vec3_add(ray->origin, vec3_scale(ray->direction, hp1.dist));

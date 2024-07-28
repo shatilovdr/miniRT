@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 12:03:32 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/22 14:31:43 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/29 15:05:52 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ t_color	get_color_sphere(t_hp *hp, t_sphere *sph)
 
 	if (sph->checker_size == 0 && !sph->texture)
 		return (sph->color);
-	coord.loc_x = atan2(hp->norm.z, hp->norm.x) / (2.0 * M_PI) * sph->diameter;
-	coord.loc_y = asin(hp->norm.y) / M_PI * sph->diameter;
+	coord.loc_x = atan2f(hp->norm.z, hp->norm.x) / (2.0 * M_PI) * sph->diameter;
+	coord.loc_y = asinf(hp->norm.y) / M_PI * sph->diameter;
 	return (handle_checker_and_texture(
 			coord, sph->texture, sph->color, sph->checker_size));
 }
@@ -56,7 +56,7 @@ t_color	get_color_plane(t_hp *hp, t_plane *pln)
 	if (pln->checker_size <= 0 && !pln->texture)
 		return (pln->color);
 	e = vec3_unit(vec3_cross(pln->normal, (t_vec3){1, 0, 0}));
-	if (sqrt(vec3_dot2(e)) < 0.01)
+	if (sqrtf(vec3_dot2(e)) < 0.01)
 		e = vec3_unit(vec3_cross(pln->normal, (t_vec3){0, 0, 1}));
 	coord.loc_x = vec3_dot(hp->pos, e);
 	e = vec3_unit(vec3_cross(pln->normal, e));

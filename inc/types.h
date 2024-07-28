@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 18:25:43 by ivalimak          #+#    #+#             */
-/*   Updated: 2024/07/23 14:22:22 by ivalimak         ###   ########.fr       */
+/*   Updated: 2024/07/29 14:54:03 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,14 +108,10 @@ struct s_conic
 	const mlx_image_t	*texture;
 };
 
-struct s_transform
-{
-	t_vec3	yaw_axis;
-	float	yaw_cos;
-	float	yaw_sin;
-	t_vec3	pitch_axis;
-	float	pitch_cos;
-	float	pitch_sin;
+struct s_transform {
+	t_vec3	cam_forward;
+	t_vec3	cam_up;
+	t_vec3	cam_right;
 	float	z_dist;
 };
 

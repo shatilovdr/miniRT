@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:55:43 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/19 12:53:39 by dshatilo         ###   ########.fr       */
+/*   Updated: 2024/07/29 15:01:45 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ static bool	hit_sphere(t_sphere *sphere, t_ray *ray, t_hp *hp)
 	sp_vec = vec3_sub(ray->origin, sphere->pos);
 	eq.a = vec3_dot(ray->direction, ray->direction);
 	eq.b = vec3_dot(sp_vec, ray->direction) / eq.a;
-	eq.c = vec3_dot(sp_vec, sp_vec) - pow(sphere->diameter / 2, 2);
+	eq.c = vec3_dot(sp_vec, sp_vec) - powf(sphere->diameter / 2, 2);
 	eq.discriminant = eq.b * eq.b - eq.c / eq.a;
 	if (eq.discriminant < 0)
 		return (false);
-	hp->dist = -eq.b - sqrt(eq.discriminant);
+	hp->dist = -eq.b - sqrtf(eq.discriminant);
 	if (hp->dist <= EPSILON)
-		hp->dist = -eq.b + sqrt(eq.discriminant);
+		hp->dist = -eq.b + sqrtf(eq.discriminant);
 	if (hp->dist <= EPSILON)
 		return (false);
 	hp->type = OBJ_SPH;

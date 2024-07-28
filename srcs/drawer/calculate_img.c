@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 23:33:33 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/24 16:35:59 by ivalimak         ###   ########.fr       */
+/*   Updated: 2024/07/28 13:03:31 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	calculate_img(t_scene *scene)
 		x = -1;
 		while (++x < WIDTH)
 		{
-			ray.direction = get_ray_direction(scene, &transform, x, y);
+			ray.direction = get_ray_direction(&transform, x, y);
 			hit_objects(scene, &ray);
 			color = get_color(scene, &ray);
 			mlx_put_pixel(scene->img, x, y, color);

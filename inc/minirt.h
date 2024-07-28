@@ -6,7 +6,7 @@
 /*   By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:51:00 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/07/24 14:00:48 by ivalimak         ###   ########.fr       */
+/*   Updated: 2024/07/28 13:02:41 by dshatilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void		calculate_img(t_scene *scene);
 t_transform	init_transform(t_scene *scene);
 
 // get_ray_direction.c
-t_vec3		get_ray_direction(t_scene *scene, t_transform *t, int x, int y);
+t_vec3		get_ray_direction(t_transform *t, int x, int y);
 
 // hit_objects.c
 void		hit_objects(t_scene *scene, t_ray *ray);
@@ -100,6 +100,6 @@ t_color		color_invert(t_color color);
 t_color		add_lights(t_ray *ray, t_scene *scene, t_color obj_color);
 
 // get_texture_color.c
-t_color	get_texture_color(t_coord coord, const mlx_image_t *img);
+t_color		get_texture_color(t_coord coord, const mlx_image_t *img);
 
 #endif

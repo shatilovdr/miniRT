@@ -6,7 +6,7 @@
 #    By: dshatilo <dshatilo@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/27 17:31:32 by ivalimak          #+#    #+#              #
-#    Updated: 2024/07/23 14:51:58 by ivalimak         ###   ########.fr        #
+#    Updated: 2024/08/02 12:33:07 by ivalimak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,9 +86,13 @@ $(NAME): $(MLX42) $(LFT) $(OBJDIR) $(OBJS)
 	@printf "\e[32;1mMINIRT >\e[m \e[1mDone!\e[m\n"
 
 $(MLX42):
+	@git submodule init
+	@git submodule update MLX42
 	@cmake $(MLXDIR) -B $(MLXDIR)/build && make -j4 --no-print-directory -C $(MLXDIR)/build
 
 $(LFT):
+	@git submodule init
+	@git submodule update libft
 	@make --no-print-directory -C $(LFTDIR) BUILD=$(BUILD) cflags.extra=$(cflags.extra)
 
 $(OBJDIR):
